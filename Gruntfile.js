@@ -112,17 +112,28 @@ module.exports = function (grunt) {
           callback(null);
         });
       }, function (callback) {
-        git = child_process.spawn("git", ["add", "-A"]);
+        git = child_process.spawn("git", ["add", "-A"], {
+          cwd: ".publish"
+        });
         git.on("close", function () {
           console.log("Staged.");
           callback(null);
         }, { cwd: ".publish" });
       }, function (callback) {
-        git = child_process.spawn("git", ["commit", "-a", "-m", "Update."]);
+        git = child_process.spawn("git", ["commit", "-a", "-m", "Update."], {
+          cwd: ".publish"
+        });
         git.on("close", function () {
           console.log("Committed.");
           callback(null);
-        }, { cwd: ".publish" });
+        });
+      }, function (callback) {
+        git = child_process.spawn("git", ["push", "origin", "master"], {
+          cwd: ".publish"
+        });
+        git.on("close", function () {
+          callback(null);
+        });
       }
     ], function () {
       done();
