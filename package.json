@@ -1,8 +1,15 @@
 {
   "name": "mysite",
   "version": "0.0.0",
+  "private": true,
   "description": "My personal site.",
   "main": "index.js",
   "author": "Salehen Shovon Rahman <salehen.rahman@gmail.com>",
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "async": "~0.2.9",
+    "express": "~3.3.4",
+    "chokidar": "~0.6.2"
+  }
 }
