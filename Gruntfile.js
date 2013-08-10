@@ -12,9 +12,19 @@ chokidar = require("chokidar");
 module.exports = function (grunt) {
   var
   pkg = grunt.file.readJSON("package.json"),
-  stage = function () {
+  extensions = {
+    ".css.less": function (filename) {
+
+    }
+  },
+  stage = function (callback) {
+    var files = [];
+    callback = callback || function () {};
     grunt.file.recurse("src", function (abspath) {
-      copy(abspath);
+      files.push(abspath);
+    });
+    async.each(files, copy, function () {
+      callback(null);
     });
   },
   copy = function (filename) {
@@ -33,7 +43,10 @@ module.exports = function (grunt) {
   });
 
   grunt.task.registerTask("stage", "Stage the site for production", function () {
-    stage();
+    var done = this.async();
+    stage(function () {
+      done();
+    });
   });
 
   grunt.task.registerTask("default", "Runs a webserver", function () {
@@ -96,21 +109,20 @@ module.exports = function (grunt) {
           callback(null);
         });
       }, function (callback) {
-        stage();
-        process.nextTick(function () {
+        stage(function () {
           callback(null);
         });
       }, function (callback) {
-        grunt.file.recurse(".stage", function (abspath, rootdir, subdir, filename) {
-          subdir = subdir || ".";
-          grunt.file.copy(abspath, path.resolve(".publish", subdir, filename));
+        var files = [];
+        grunt.file.recurse(".stage", function (abspath) {
+          files.push(abspath);
         });
 
-        console.log("Copied.");
-
-        process.nextTick(function () {
+        async.each(files, copy, function () {
+          console.log("Copied.");
           callback(null);
         });
+
       }, function (callback) {
         git = child_process.spawn("git", ["add", "-A"], {
           cwd: ".publish"
