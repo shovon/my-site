@@ -106,17 +106,21 @@ module.exports = function (grunt) {
           grunt.file.copy(abspath, path.resolve(".publish", subdir, filename));
         });
 
+        console.log("Copied.");
+
         process.nextTick(function () {
           callback(null);
         });
       }, function (callback) {
         git = child_process.spawn("git", ["add", "-A"]);
         git.on("close", function () {
+          console.log("Staged.");
           callback(null);
         });
       }, function (callback) {
         git = child_process.spawn("git", ["commit", "-a", "-m", "Update."]);
         git.on("close", function () {
+          console.log("Committed.");
           callback(null);
         });
       }
