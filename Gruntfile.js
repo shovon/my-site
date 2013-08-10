@@ -116,13 +116,13 @@ module.exports = function (grunt) {
         git.on("close", function () {
           console.log("Staged.");
           callback(null);
-        });
+        }, { cwd: ".publish" });
       }, function (callback) {
         git = child_process.spawn("git", ["commit", "-a", "-m", "Update."]);
         git.on("close", function () {
           console.log("Committed.");
           callback(null);
-        });
+        }, { cwd: ".publish" });
       }
     ], function () {
       done();
