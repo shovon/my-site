@@ -13,8 +13,7 @@ module.exports = function (grunt) {
   var
   pkg = grunt.file.readJSON("package.json"),
   stage = function () {
-    grunt.file.recurse("src", function (abspath, rootdir, subdir) {
-      if (/\.publish/.test(subdir)) return;
+    grunt.file.recurse("src", function (abspath) {
       copy(abspath);
     });
   },
@@ -93,11 +92,31 @@ module.exports = function (grunt) {
         ], { cwd: ".publish" });
 
         git.on("close", function () {
+          console.log("Cleared.");
           callback(null);
         });
       }, function (callback) {
         stage();
         process.nextTick(function () {
+          callback(null);
+        });
+      }, function (callback) {
+        grunt.file.recurse(".stage", function (abspath, rootdir, subdir, filename) {
+          subdir = subdir || ".";
+          grunt.file.copy(abspath, path.resolve(".publish", subdir, filename));
+        });
+
+        process.nextTick(function () {
+          callback(null);
+        });
+      }, function (callback) {
+        git = child_process.spawn("git", ["add", "-A"]);
+        git.on("close", function () {
+          callback(null);
+        });
+      }, function (callback) {
+        git = child_process.spawn("git", ["commit", "-a", "-m", "Update."]);
+        git.on("close", function () {
           callback(null);
         });
       }
