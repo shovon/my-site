@@ -38,9 +38,18 @@ p {
   text-decoration: none;
 }
 
+/*
 .intro nav {
   position: relative;
   margin-bottom: 35px;
+}
+*/
+
+.intro nav {
+  position: relative;
+  display: inline-block;
+  margin-top: -15px;
+  margin-bottom: -10px;
 }
 
 .intro div {
