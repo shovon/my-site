@@ -1,15 +1,8 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+# Me
 
-# TEAM
-
-    <name> -- <role> -- <twitter>
-
-# THANKS
-
-    <name>
+    Salehen Shovon Rahman -- Programmer -- @shovon_rahman
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+    HTML, CSS3
+    Normalize.css, jQuery

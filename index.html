@@ -13,8 +13,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="tooltipster/css/tooltipster.css">
+
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
   </head>
@@ -27,26 +29,31 @@
     <div class="intro">
       <h1>Salehen Shovon Rahman</h1>
 
-      <ul>
-        <li><a href="http://twitter.com/shovon_rahman" target="_blank">Twitter</a></li>
-        <li><a href="http://github.com/shovon" target="_blank">GitHub</a></li>
-        <li><a href="http://ca.linkedin.com/pub/salehen-rahman/23/87b/6ab/">LinkedIn</a></li>
-        <li><a href="http://">Google+</a></li>
-        <li><a href="http://youtube.com/user/shovonRahman">YouTube</a></li>
-        <li><a href="http://soudcloud.com/shovonrahman">SoundCloud</a></li>
-        <li><a href="mailto:salehen.rahman@gmail.com">Email</a></li>
-      </ul>
+      <nav>
+        <ul>
+          <li data-tooltip title="I tweet"><a href="http://twitter.com/shovon_rahman" target="_blank" class="black">Twitter</a></li>
+          <li data-tooltip title="I code"><a href="http://github.com/shovon" target="_blank" class="black">GitHub</a></li>
+          <li data-tooltip title="Connect with me"><a href="http://ca.linkedin.com/pub/salehen-rahman/23/87b/6ab/" target="_blank" class="black">LinkedIn</a></li>
+          <li data-tooltip title="Add me to your circle"><a href="https://plus.google.com/105481576429214918750" target="_blank" class="black">Google+</a></li>
+          <li data-tooltip title="My music"><a href="http://soundcloud.com/shovonrahman" target="_blank" class="black">SoundCloud</a></li>
+          <li data-tooltip title="My music as videos"><a href="http://youtube.com/user/shovonRahman" target="_blank" class="black">YouTube</a></li>
+          <li data-tooltip title="Email me"><a href="mailto:salehen.rahman@gmail.com" target="_blank" class="black">Email</a></li>
+        </ul>
+        <div class="black"></div>
+      </nav>
 
       <p>
-        I'm a programmer, and I do a bunch of stuff on the web. Although, I'm
-        mostly programming, but I also produce electronic music. My personal
-        favourite is progressive house. Friend me up on the Internet social
-        sphere. And most importantly, do not be afraid to say hi. I'm a friendly guy.
+        I'm a <strong>programmer</strong>, and I do a bunch of stuff on the Internet. Although,
+        I'm mostly programming, but <strong>I also produce electronic music</strong>. My
+        favourite genre is progressive house. <strong>Friend me up</strong> on the Internet
+        social sphere. And most importantly, do not be afraid to <strong>say hi</strong>. I'm a
+        friendly guy.
       </p>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="tooltipster/js/jquery.tooltipster.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 

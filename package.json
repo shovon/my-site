@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "My personal site.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Salehen Shovon Rahman <salehen.rahman@gmail.com>",
   "license": "BSD"
 }
