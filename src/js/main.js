@@ -13,7 +13,7 @@
     "Email"     : { themeName: "email" }
   },
   introNav = $(".intro nav"),
-  cursor = $(".intro .cursor"),
+  cursor   = $(".intro .cursor"),
   setTheme = (function () {
     var lastTheme = "";
     return function (theme) {
@@ -21,8 +21,6 @@
       $html.removeClass("theme-" + lastTheme);
       $html.addClass("theme-" + theme.themeName);
       lastTheme = theme.themeName;
-      // TODO: use CSS instead.
-      //$(".intro li a, .intro div").attr("class", "").addClass(theme.foreground);
     };
   }()),
   moveCursor = function (position, width) {
@@ -41,7 +39,7 @@
       setTheme(none);
     });
 
-    $(".intro li").mouseenter(function () {
+    $(".intro nav li").mouseenter(function () {
       var
       $this       = $(this),
       serviceName = $this.children().html(),

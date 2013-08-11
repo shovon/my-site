@@ -1,6 +1,8 @@
 @main-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 @text-color-black: #444;
 
+// TODO: move all the home-page-specific styles to another stylesheet file.
+
 /**
  * Apply CSS transition to a single attribute.
  */
@@ -134,7 +136,6 @@ html {
   .transition2(color 500ms ease, background-color 500ms ease);
   font-weight: 300;
   font-family: @main-font;
-  //padding-top: 90px;
   color: @text-color-black;
   height: 100%;
 }
@@ -186,10 +187,40 @@ p {
   }
 }
 
+@media (min-width: @medium-small-screen) {
+  .only-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: (@medium-small-screen - 1px)) {
-  .container {
-    width: 70%;
-    padding: 0 50px;
+  .intro {
+    .intro-inner {
+      margin: 0 50px;
+      position: static;
+      height: auto;
+      h1 {
+        margin: 0;
+        margin-top: 24px;
+      }
+    }
+
+    .only-mobile {
+      padding: 0;
+      list-style-type: none;
+      li {
+        a {
+          font-size: 1.5em;
+          text-align: center;
+          padding: 20px 50px;
+          color: white;
+          background-color: black;
+          display: block;
+          text-decoration: none;
+          border-top: 1px solid @text-color-black;
+        }
+      }
+    }
   }
 }
 
