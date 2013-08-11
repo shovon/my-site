@@ -4,23 +4,16 @@
   var
   none = { themeName: "" },
   services = {
-    //"Twitter"   : { background: "#0096ff", foreground: "white" },
     "Twitter"   : { themeName: "twitter" },
-    //"GitHub"    : { background: "#242424", foreground: "white" },
     "GitHub"    : { themeName: "github" },
-    //"LinkedIn"  : { background: "#367da6", foreground: "white" },
     "LinkedIn"  : { themeName: "linkedin" },
-    //"Google+"   : { background: "#00bc66", foreground: "white" },
     "Google+"   : { themeName: "google-plus" },
-    //"YouTube"   : { background: "#942424", foreground: "white" },
     "YouTube"   : { themeName: "youtube" },
-    //"SoundCloud": { background: "#ff6600", foreground: "white" },
     "SoundCloud": { themeName: "soundcloud" },
-    //"Email"     : { background: "#778b93", foreground: "white" }
     "Email"     : { themeName: "email" }
   },
   introNav = $(".intro nav"),
-  cursor = $(".intro div"),
+  cursor = $(".intro .cursor"),
   setTheme = (function () {
     var lastTheme = "";
     return function (theme) {

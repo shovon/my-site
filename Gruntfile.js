@@ -95,8 +95,6 @@ module.exports = function (grunt) {
 
     if (isPrivate(filename)) return callback(null);
 
-    callback = callback || function () {};
-
     async.whilst(
     function () { return extensions.length > 2; },
     function (callback) {
