@@ -186,6 +186,13 @@ p {
   }
 }
 
+@media (max-width: (@medium-small-screen - 1px)) {
+  .container {
+    width: 70%;
+    padding: 0 50px;
+  }
+}
+
 .intro {
   height: 100%;
   position: relative;
@@ -211,11 +218,12 @@ p {
   text-transform: uppercase;
 }
 
-@media (max-width: (@medium-screen - 1px)) and (min-width: @medium-small-screen) {
+@media (max-width: (@medium-screen - 1px)) {
   .intro nav ul li {
     font-size: 1em;
   }
 }
+
 
 .intro nav ul li a {
   .transition(color 500ms ease);
@@ -227,6 +235,12 @@ p {
   display: inline-block;
   margin-top: -15px;
   margin-bottom: -10px;
+}
+
+@media (max-width: (@medium-small-screen - 1px)) {
+  .intro nav {
+    display: none;
+  }
 }
 
 .intro .cursor {
