@@ -31,7 +31,7 @@ module.exports = function (grunt) {
       callback(null);
     });
   },
-  copy = function (filename) {
+  copy = function (filename, callback) {
     var
     source = path.resolve(process.cwd(), filename),
     dest   = (function () {
@@ -41,6 +41,8 @@ module.exports = function (grunt) {
     extensions = path.basename(source).split("."),
     code = grunt.file.read(source, { encoding: null }),
     finalPath = path.join(path.dirname(dest), extensions.join("."));
+
+    callback = callback || function () {};
 
     async.whilst(function () { return extensions.length > 2; }, function (callback) {
       var
@@ -61,6 +63,7 @@ module.exports = function (grunt) {
     }, function () {
       grunt.file.mkdir(path.dirname(finalPath));
       grunt.file.write(finalPath, code);
+      callback(null);
     });
   };
 
@@ -88,8 +91,12 @@ module.exports = function (grunt) {
     // TODO: Have the watcher delete the files in `.stage` which have been
     //   deleted from source.
     watcher
-    .on("add", copy)
-    .on("change", copy);
+    .on("add", function (path) {
+      copy(path);
+    })
+    .on("change", function () {
+      copy(path);
+    });
 
     app = express();
 
@@ -100,8 +107,6 @@ module.exports = function (grunt) {
     app.use(app.router);
     app.use(express.static(".stage"));
     app.use(express.directory(".stage"));
-
-    app.use(express.static(".stage"));
 
     app.listen(4000);
 
@@ -139,19 +144,18 @@ module.exports = function (grunt) {
         });
       }, function (callback) {
         stage(function () {
+          console.log("Built.");
           callback(null);
         });
       }, function (callback) {
-        var files = [];
-        grunt.file.recurse(".stage", function (abspath) {
-          files.push(abspath);
+        grunt.file.recurse(".stage", function (abspath, rootdir, subdir, filename) {
+          subdir = subdir || ".";
+          grunt.file.copy(abspath, path.join(".publish", subdir, filename));
         });
 
-        async.each(files, copy, function () {
-          console.log("Copied.");
+        process.nextTick(function () {
           callback(null);
         });
-
       }, function (callback) {
         git = child_process.spawn("git", ["add", "-A"], {
           cwd: ".publish"
