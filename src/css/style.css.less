@@ -162,6 +162,7 @@ p {
 }
 
 .container {
+  width: 85%;
   margin: 0 auto;
   height: 100%;
 }
@@ -170,38 +171,21 @@ p {
 @medium-large-screen: 1106px;
 @medium-screen      : 990px;
 @medium-small-screen: 874px;
+@small-screen       : 720px;
 
-@media (min-width: @large-screen) {
+@media (max-width: (@small-screen - 1px)) {
   .container {
-    width: 1024px;
+    width: 100%;
   }
 }
 
-@media (max-width: (@large-screen - 1px)) and (min-width: @medium-large-screen) {
-  .container {
-    width: 960px;
-  }
-}
-
-@media (max-width: (@medium-large-screen - 1px)) and (min-width: @medium-screen) {
-  .container {
-    width: 896px; 
-  }
-}
-
-@media (max-width: (@medium-screen - 1px)) and (min-width: @medium-small-screen) {
-  .container {
-    width: 726px; 
-  }
-}
-
-@media (min-width: @medium-small-screen) {
+.intro {
   .only-mobile {
     display: none;
   }
 }
 
-@media (max-width: (@medium-small-screen - 1px)) {
+@media (max-width: (@small-screen - 1px)) {
   .intro {
     .intro-inner {
       margin: 0 50px;
@@ -214,6 +198,7 @@ p {
     }
 
     .only-mobile {
+      display: block;
       padding: 0;
       list-style-type: none;
       li {
@@ -285,9 +270,19 @@ p {
   text-transform: uppercase;
 }
 
-@media (max-width: (@medium-screen - 1px)) {
+@media (max-width: (@medium-screen - 1px)) and (min-width: @medium-small-screen) {
   .intro nav ul li {
     font-size: 1em;
+  }
+}
+
+@media (max-width: (@medium-small-screen - 1px)) and (min-width: (@small-screen)) {
+  .intro {
+    nav {
+      ul {
+        font-size: 0.65em;
+      }
+    }
   }
 }
 
@@ -304,7 +299,7 @@ p {
   margin-bottom: -10px;
 }
 
-@media (max-width: (@medium-small-screen - 1px)) {
+@media (max-width: (@small-screen - 1px)) {
   .intro nav {
     display: none;
   }
