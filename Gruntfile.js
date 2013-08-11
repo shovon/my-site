@@ -4,17 +4,18 @@
 
 var
 child_process = require("child_process"),
-async = require("async"),
-path = require("path"),
-express = require("express"),
-chokidar = require("chokidar");
+async         = require("async"),
+path          = require("path"),
+express       = require("express"),
+chokidar      = require("chokidar"),
+less          = require("less");
 
 module.exports = function (grunt) {
   var
   pkg = grunt.file.readJSON("package.json"),
-  extensions = {
-    ".css.less": function (filename) {
-
+  processingExtensions = {
+    ".css.less": function (src, callback) {
+      less.render(src, callback);
     }
   },
   stage = function (callback) {
@@ -29,13 +30,33 @@ module.exports = function (grunt) {
   },
   copy = function (filename) {
     var
+    // Gets the absolute path of the source directory.
     source = path.resolve(process.cwd(), filename),
+    // Gets the absolute path of the destination directory.
     dest   = (function () {
       var subdir = source.slice(path.resolve(process.cwd(), "src").length + 1);
       return path.resolve(process.cwd(), ".stage", subdir);
-    }());
-    // TODO: add preprocessing here.
-    grunt.file.copy(source, dest);
+    }()),
+    // Grabs all extensions.
+    extensions = path.basename(source).split("."),
+    // Grabs the code as binary data, instead of UTF-8 encoded string.
+    code = grunt.file.read(source, { encoding: null }),
+    finalPath = path.join(path.dirname(dest), extensions.join("."));
+
+    async.whilst(function () { return extensions.length > 2; }, function (callback) {
+      var
+      extension  = extensions.pop(),
+      processExt = "." + extensions[extensions.length - 1] + "." + extension;
+      if (processingExtensions[processExt]) {
+        extensions.push(extension);
+        finalPath = path.join(path.dirname(dest), extensions.join("."));
+        extensions = [];
+        callback(null);
+      }
+    }, function () {
+      grunt.file.mkdir(path.dirname(finalPath));
+      grunt.file.write(finalPath, code);
+    });
   };
 
   grunt.initConfig({
