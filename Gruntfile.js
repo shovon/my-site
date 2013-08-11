@@ -31,16 +31,12 @@ module.exports = function (grunt) {
   },
   copy = function (filename) {
     var
-    // Gets the absolute path of the source directory.
     source = path.resolve(process.cwd(), filename),
-    // Gets the absolute path of the destination directory.
     dest   = (function () {
       var subdir = source.slice(path.resolve(process.cwd(), "src").length + 1);
       return path.resolve(process.cwd(), ".stage", subdir);
     }()),
-    // Grabs all extensions.
     extensions = path.basename(source).split("."),
-    // Grabs the code as binary data, instead of UTF-8 encoded string.
     code = grunt.file.read(source, { encoding: null }),
     finalPath = path.join(path.dirname(dest), extensions.join("."));
 
