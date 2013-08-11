@@ -15,6 +15,7 @@ module.exports = function (grunt) {
   pkg = grunt.file.readJSON("package.json"),
   processingExtensions = {
     ".css.less": function (src, callback) {
+      src = src.toString("utf8");
       less.render(src, callback);
     }
   },
@@ -47,12 +48,18 @@ module.exports = function (grunt) {
       var
       extension  = extensions.pop(),
       processExt = "." + extensions[extensions.length - 1] + "." + extension;
-      if (processingExtensions[processExt]) {
+      if (!processingExtensions[processExt]) {
         extensions.push(extension);
         finalPath = path.join(path.dirname(dest), extensions.join("."));
         extensions = [];
-        callback(null);
+        return callback(null);
       }
+      processingExtensions[processExt](code, function (err, src) {
+        code = new Buffer(src);
+        finalPath = path.join(path.dirname(dest), extensions.join("."));
+        extensions = [];
+        callback(err, code);
+      });
     }, function () {
       grunt.file.mkdir(path.dirname(finalPath));
       grunt.file.write(finalPath, code);
