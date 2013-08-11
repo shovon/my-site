@@ -1,0 +1,6 @@
+.preload * {
+  -webkit-transition: color 0 ease !important;
+     -moz-transition: color 0 ease !important;
+       -o-transition: color 0 ease !important;
+          transition: color 0 ease !important;
+}

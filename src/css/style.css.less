@@ -1,0 +1,226 @@
+@main-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+@text-color-black: #444;
+
+/**
+ * Apply CSS transition to a single attribute.
+ */
+.transition(@options1) {
+  -webkit-transition: @options1;
+     -moz-transition: @options1;
+       -o-transition: @options1;
+          transition: @options1;
+}
+
+/**
+ * Apply CSS transition to two different attributes.
+ */
+.transition2(@options1, @options2) {
+  -webkit-transition: @options1, @options2;
+     -moz-transition: @options1, @options2;
+       -o-transition: @options1, @options2;
+          transition: @options1, @options2;
+}
+
+/**
+ * Apply CSS transition to four different attributes.
+ */
+.transition4(@options1, @options2, @options3, @options4) {
+  -webkit-transition: @options1, @options2, @options3, @options4;
+     -moz-transition: @options1, @options2, @options3, @options4;
+       -o-transition: @options1, @options2, @options3, @options4;
+          transition: @options1, @options2, @options3, @options4;
+}
+
+// TODO: for all the html.theme-*, use variables for colors.
+html.theme-twitter {
+  background-color: #0096ff;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-github {
+  background-color: #242424;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-linkedin {
+  background-color: #367da6;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-google-plus {
+  background-color: #00bc66;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-youtube {
+  background-color: #942424;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-soundcloud {
+  background-color: #ff6600;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html.theme-email {
+  background-color: #778b93;
+  color: white;
+  .intro nav ul li a {
+    color: white;
+    &:visited {
+      color: white;
+    }
+  }
+  .intro nav .cursor {
+    background-color: white;
+  }
+}
+
+html {
+  .transition2(color 500ms ease, background-color 500ms ease);
+  font-weight: 300;
+  font-family: @main-font;
+  padding-top: 90px;
+  color: @text-color-black;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+.intro nav ul li a {
+  color: @text-color-black;
+  &:visited {
+    color: @text-color-black;
+  }
+}
+
+.intro {
+  margin: 0 auto;
+  width: 1024px;
+}
+
+.intro nav ul {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+}
+
+.intro nav ul li {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 1.4em;
+  text-transform: uppercase;
+}
+
+.intro nav ul li a {
+  .transition(color 500ms ease);
+  text-decoration: none;
+}
+
+.intro nav {
+  position: relative;
+  display: inline-block;
+  margin-top: -15px;
+  margin-bottom: -10px;
+}
+
+.intro div {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 2px;
+  .transition4(
+    width 200ms,
+    left 200ms,
+    opacity 500ms ease,
+    background-color 500ms ease
+  );
+  width: 50px;
+}
+
+.intro div.black {
+  background-color: black;
+  width: 50px;
+}
+
+.intro div.white {
+  background-color: white;
+  width: 50px;
+}
+
+/**
+ * This is the tooltip theme.
+ */
+// TODO: find a better name than just .simple-black;
+.simple-black {
+  border-radius: 5px;
+  background: black;
+  color: #fff;
+  text-align: center;
+}
+
+/* Use this next selector to style things like font-size and line-height: */
+.simple-black .tooltipster-content {
+  font-family: @main-font;
+  font-size: 20px;
+  padding: 15px 10px;
+}

@@ -10,6 +10,8 @@ express       = require("express"),
 chokidar      = require("chokidar"),
 less          = require("less");
 
+// TODO: figure out a way to prevent crashes on LESS errors.
+
 module.exports = function (grunt) {
   var
   pkg = grunt.file.readJSON("package.json"),
@@ -83,6 +85,8 @@ module.exports = function (grunt) {
 
     stage();
 
+    // TODO: Have the watcher delete the files in `.stage` which have been
+    //   deleted from source.
     watcher
     .on("add", copy)
     .on("change", copy);
@@ -100,6 +104,7 @@ module.exports = function (grunt) {
     app.use(express.static(".stage"));
 
     app.listen(4000);
+
     console.log("Server listening on port 3000");
   });
 
