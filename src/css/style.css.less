@@ -1,6 +1,14 @@
 @main-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 @text-color-black: #444;
 
+@twitter-theme-color: #0096ff;
+@github-theme-color: #242424;
+@linkedin-theme-color: #367da6;
+@google-plus-theme-color: #00bc66;
+@soundcloud-theme-color: #ff6600;
+@youtube-theme-color: #942424;
+@email-theme-color: #778b93;
+
 // TODO: move all the home-page-specific styles to another stylesheet file.
 
 /**
@@ -35,7 +43,7 @@
 
 // TODO: for all the html.theme-*, use variables for colors.
 html.theme-twitter {
-  background-color: #0096ff;
+  background-color: @twitter-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -49,7 +57,7 @@ html.theme-twitter {
 }
 
 html.theme-github {
-  background-color: #242424;
+  background-color: @github-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -63,7 +71,7 @@ html.theme-github {
 }
 
 html.theme-linkedin {
-  background-color: #367da6;
+  background-color: @linkedin-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -77,7 +85,7 @@ html.theme-linkedin {
 }
 
 html.theme-google-plus {
-  background-color: #00bc66;
+  background-color: @google-plus-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -91,7 +99,7 @@ html.theme-google-plus {
 }
 
 html.theme-youtube {
-  background-color: #942424;
+  background-color: @youtube-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -105,7 +113,7 @@ html.theme-youtube {
 }
 
 html.theme-soundcloud {
-  background-color: #ff6600;
+  background-color: @soundcloud-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -119,7 +127,7 @@ html.theme-soundcloud {
 }
 
 html.theme-email {
-  background-color: #778b93;
+  background-color: @email-theme-color;
   color: white;
   .intro nav ul li a {
     color: white;
@@ -217,7 +225,35 @@ p {
           background-color: black;
           display: block;
           text-decoration: none;
-          border-top: 1px solid @text-color-black;
+          //border-top: 1px solid @text-color-black;
+        }
+
+        a.twitter-theme {
+          background-color: @twitter-theme-color;
+        }
+
+        a.github-theme {
+          background-color: @github-theme-color;
+        }
+
+        a.linkedin-theme {
+          background-color: @linkedin-theme-color;
+        }
+
+        a.google-plus-theme {
+          background-color: @google-plus-theme-color;
+        }
+
+        a.soundcloud-theme {
+          background-color: @soundcloud-theme-color;
+        }
+
+        a.youtube-theme {
+          background-color: @youtube-theme-color;
+        }
+
+        a.email-theme {
+          background-color: @email-theme-color;
         }
       }
     }
