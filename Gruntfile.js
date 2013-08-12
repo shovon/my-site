@@ -8,7 +8,9 @@ async         = require("async"),
 path          = require("path"),
 express       = require("express"),
 chokidar      = require("chokidar"),
-less          = require("less");
+less          = require("less"),
+CSON          = require("cson"),
+_             = require("lodash");
 
 // TODO: figure out a way to prevent crashes on LESS errors.
 // TODO: unit test the code in here.
@@ -16,6 +18,25 @@ less          = require("less");
 module.exports = function (grunt) {
   var
   pkg = grunt.file.readJSON("package.json"),
+
+  /**
+   * Parses the header CSON data. Note: the source code must be formatted in
+   * human-readable string. Expects CSON to be wrapped in `---`, where the
+   * the first substring in the source code must be a `---`.
+   *
+   * @returns { data, src } where data is the CSON data in the header, and
+   *   src is the source code.
+   */
+  parseHeaderCSON = function (src) {
+    var
+    index = src.indexOf("---", 3),
+    cson = src.slice(3, index),
+    newSrc = src.slice(index + 3, src.length);
+    return {
+      data: CSON.parseSync(cson),
+      src : newSrc
+    };
+  },
 
   /**
    * A key-value pair of all preprocessor extensions, and their respective
@@ -27,12 +48,68 @@ module.exports = function (grunt) {
    */
   processingExtensions = {
     /**
-     * LESS to CSS.
+     * LESS to CSS
      */
     ".css.less": function (src, callback) {
       src = src.toString("utf8");
       less.render(src, function (err, result) {
         callback(err, new Buffer(result));
+      });
+    },
+
+    /**
+     * Underscore to HTML
+     */
+    ".html.ejs": function (src, callback) {
+      var
+
+      // The initial meta data is just an empty object and the original source
+      // code.
+      contentMeta = { data: {}, src: src },
+      layoutMeta  = { data: {}, src: "<%= content %>" },
+
+      data = {},
+      compiledContent,
+      compiledLayout;
+
+      src = src.toString("utf8");
+
+      // Get the data and the source code.
+      if (/^---/.test(src)) {
+        contentMeta = parseHeaderCSON(src);
+      }
+
+      // Get the data and source code for the layout, if a specific one was
+      // requested.
+
+      if (contentMeta.data.layout) {
+        layoutMeta.src = grunt.file.read(
+          path.join(
+            "src",
+            "_layouts",
+            contentMeta.data.layout + ".html.ejs"
+          )
+        );
+
+        if (/^---/.test(layoutMeta.src)) {
+          layoutMeta = parseHeaderCSON(src);
+        }
+      }
+
+      delete contentMeta.data.layout;
+      delete layoutMeta.data.layout;
+
+      data = contentMeta.data;
+      data =  _.assign(data, layoutMeta.data);
+
+      compiledContent = _.template(contentMeta.src, data);
+
+      data.content = compiledContent;
+
+      compiledLayout  = _.template(layoutMeta.src, data);
+
+      process.nextTick(function () {
+        callback(null, new Buffer(compiledLayout));
       });
     }
   },
