@@ -111,6 +111,20 @@ module.exports = function (grunt) {
       process.nextTick(function () {
         callback(null, new Buffer(compiledLayout));
       });
+    },
+  },
+
+  /**
+   * A key-value pair of all hidden directories that are
+   */
+  paths = {
+    "pages": function (filename) {
+      return path.resolve(
+        __dirname,
+        ".stage",
+        path.basename(filename, path.extname(filename)),
+        "index.html"
+      );
     }
   },
 
@@ -139,20 +153,20 @@ module.exports = function (grunt) {
     grunt.file.recurse("src", function (abspath) {
       files.push(abspath);
     });
-    async.each(files, copy, function (err) {
+    async.each(files, preprocess, function (err) {
       callback(err);
     });
   },
 
   /**
-   * "Copies" a file to the staging folder. It also applies any necessary
-   * preprocessing.
+   * Preprocesses a given file.
    *
    * @param filename is always expected to be a path in `src` (i.e.
    * src/something/another good, /esoteric/elsewhere bad).
    */
-  // TODO: find a better name for `copy`.
-  copy = function (filename, callback) {
+   // TOOD: have the function accept a binary object, and then return a binary
+   //   object. Let the reading and writing be done by another function.
+  preprocess = function (filename, callback) {
     var
 
     // The absolute path of the source and destination.
@@ -203,6 +217,31 @@ module.exports = function (grunt) {
       grunt.file.write(finalPath, code);
       callback(null);
     });
+  },
+
+  /**
+   * Processes the files, to be saved to the `.stage` directory.
+   */
+  processFile = function (filename, callback) {
+    var dest, source, temp;
+    
+    source = path.resolve(process.cwd(), filename);
+    dest   = (function () {
+      var subdir = source.slice(path.resolve(process.cwd(), "src").length + 1);
+      return path.resolve(process.cwd(), ".stage", subdir);
+    }());
+    
+    if (isPrivate(filename)) {
+      temp = source.slice(
+        path.resolve(__dirname, "src"
+      ).length + 1).split(path.sep)[0];
+      if (temp[0] !== "_") {
+        return callback(null);
+      }
+      if (paths[temp]) {
+        dest = paths[temp](source);
+      }
+    }
   };
 
   grunt.initConfig({
@@ -223,10 +262,10 @@ module.exports = function (grunt) {
     //   deleted from source.
     watcher
     .on("add", function (path) {
-      copy(path);
+      preprocess(path);
     })
     .on("change", function (path) {
-      copy(path);
+      preprocess(path);
     });
 
     app = express();
