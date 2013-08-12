@@ -14,6 +14,7 @@ _             = require("lodash");
 
 // TODO: figure out a way to prevent crashes on LESS errors.
 // TODO: unit test the code in here.
+// TODO: move the code to some other file.
 
 module.exports = function (grunt) {
   var
@@ -65,18 +66,16 @@ module.exports = function (grunt) {
 
       // The initial meta data is just an empty object and the original source
       // code.
-      contentMeta = { data: {}, src: src },
+      contentMeta = { data: {}, src: src.toString("utf8") },
       layoutMeta  = { data: {}, src: "<%= content %>" },
 
       data = {},
       compiledContent,
       compiledLayout;
 
-      src = src.toString("utf8");
-
       // Get the data and the source code.
       if (/^---/.test(src)) {
-        contentMeta = parseHeaderCSON(src);
+        contentMeta = parseHeaderCSON(contentMeta.src);
       }
 
       // Get the data and source code for the layout, if a specific one was
@@ -92,7 +91,7 @@ module.exports = function (grunt) {
         );
 
         if (/^---/.test(layoutMeta.src)) {
-          layoutMeta = parseHeaderCSON(src);
+          layoutMeta = parseHeaderCSON(layoutMeta.src);
         }
       }
 
@@ -153,7 +152,7 @@ module.exports = function (grunt) {
     grunt.file.recurse("src", function (abspath) {
       files.push(abspath);
     });
-    async.each(files, preprocess, function (err) {
+    async.each(files, processFile, function (err) {
       callback(err);
     });
   },
@@ -166,25 +165,28 @@ module.exports = function (grunt) {
    */
    // TOOD: have the function accept a binary object, and then return a binary
    //   object. Let the reading and writing be done by another function.
-  preprocess = function (filename, callback) {
+   //
+   //   proposed new function: preprocess(buffer, filename, callback)
+  preprocess = function (buffer, filename, callback) {
     var
 
     // The absolute path of the source and destination.
+    /*
     source = path.resolve(process.cwd(), filename),
     dest   = (function () {
       var subdir = source.slice(path.resolve(process.cwd(), "src").length + 1);
       return path.resolve(process.cwd(), ".stage", subdir);
     }()),
+    */
 
-    extensions = path.basename(source).split("."),
-
-    // Grab the source code and binary data.
-    code = grunt.file.read(source, { encoding: null }),
-    finalPath = path.join(path.dirname(dest), extensions.join("."));
+    extensions     = path.basename(filename).split("."),
+    finalExtension = extensions.join("."),
+    code = buffer;
+    //finalPath = path.join(path.dirname(dest), extensions.join("."));
 
     callback = callback || function () {};
 
-    if (isPrivate(filename)) return callback(null);
+    //if (isPrivate(filename)) return callback(null);
 
     async.whilst(
     function () { return extensions.length > 2; },
@@ -199,23 +201,23 @@ module.exports = function (grunt) {
 
       if (!processingExtensions[processExt]) {
         extensions.push(extension);
-        finalPath = path.join(path.dirname(dest), extensions.join("."));
+        finalExtension = extensions.join(".");
         extensions = [];
         return callback(null);
       }
 
       processingExtensions[processExt](code, function (err, src) {
         code = new Buffer(src);
-        finalPath = path.join(path.dirname(dest), extensions.join("."));
+        //finalPath = path.join(path.dirname(dest), extensions.join("."));
         extensions = [];
-        callback(err, code);
+        callback(err);
       });
     },
     function (err) {
       if (err) return callback(err);
-      grunt.file.mkdir(path.dirname(finalPath));
-      grunt.file.write(finalPath, code);
-      callback(null);
+      //grunt.file.mkdir(path.dirname(finalPath));
+      //grunt.file.write(finalPath, code);
+      callback(null, code, finalExtension);
     });
   },
 
@@ -224,6 +226,8 @@ module.exports = function (grunt) {
    */
   processFile = function (filename, callback) {
     var dest, source, temp;
+
+    callback = callback || function () {};
     
     source = path.resolve(process.cwd(), filename);
     dest   = (function () {
@@ -240,8 +244,20 @@ module.exports = function (grunt) {
       }
       if (paths[temp]) {
         dest = paths[temp](source);
+      } else {
+        return callback(null);
       }
     }
+
+    preprocess(
+      grunt.file.read(source, { encoding: null }),
+      source,
+      function (err, buffer) {
+        if (err) return callback(err);
+        grunt.file.write(dest, buffer);
+        callback(null);
+      }
+    );
   };
 
   grunt.initConfig({
@@ -252,8 +268,7 @@ module.exports = function (grunt) {
     var
     app,
     srcpath = "src",
-    watcher = chokidar.watch(srcpath,  {persisten: true});
-
+    watcher = chokidar.watch(srcpath, { persistent: true});
     this.async();
 
     stage();
@@ -262,10 +277,10 @@ module.exports = function (grunt) {
     //   deleted from source.
     watcher
     .on("add", function (path) {
-      preprocess(path);
+      processFile(path);
     })
     .on("change", function (path) {
-      preprocess(path);
+      processFile(path);
     });
 
     app = express();
