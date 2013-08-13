@@ -15,6 +15,7 @@ _             = require("lodash");
 // TODO: figure out a way to prevent crashes on LESS errors.
 // TODO: unit test the code in here.
 // TODO: move the code to some other file.
+// TODO: find a way to update the content file, when the layout updates
 
 module.exports = function (grunt) {
   var
@@ -118,10 +119,14 @@ module.exports = function (grunt) {
    */
   paths = {
     "pages": function (filename) {
+      var newName = filename;
+      while (newName !== path.basename(newName, path.extname(newName))) {
+        newName = path.basename(newName, path.extname(newName));
+      }
       return path.resolve(
         __dirname,
         ".stage",
-        path.basename(filename, path.extname(filename)),
+        newName,
         "index.html"
       );
     }
@@ -199,17 +204,28 @@ module.exports = function (grunt) {
       // .css.less).
       processExt = "." + extensions[extensions.length - 1] + "." + extension;
 
+
       if (!processingExtensions[processExt]) {
+        //console.log(processingExtensions);
+        //console.log(processExt);
+        //console.log(processingExtensions[processExt]);
+        //console.log(processExt);
         extensions.push(extension);
         finalExtension = extensions.join(".");
+        //console.log(finalExtension);
         extensions = [];
         return callback(null);
       }
 
       processingExtensions[processExt](code, function (err, src) {
         code = new Buffer(src);
+        finalExtension = extensions.join(".");
         //finalPath = path.join(path.dirname(dest), extensions.join("."));
-        extensions = [];
+        //extensions = [];
+        //console.log(filename.slice(filename.length - ".html.ejs".length, filename.length));
+        if (filename.slice(filename.length - ".html.ejs".length, filename.length) == ".html.ejs") {
+          debugger;
+        }
         callback(err);
       });
     },
@@ -217,6 +233,8 @@ module.exports = function (grunt) {
       if (err) return callback(err);
       //grunt.file.mkdir(path.dirname(finalPath));
       //grunt.file.write(finalPath, code);
+      //console.log(filename);
+      //console.log(finalExtension);
       callback(null, code, finalExtension);
     });
   },
@@ -234,6 +252,7 @@ module.exports = function (grunt) {
       var subdir = source.slice(path.resolve(process.cwd(), "src").length + 1);
       return path.resolve(process.cwd(), ".stage", subdir);
     }());
+
     
     if (isPrivate(filename)) {
       temp = source.slice(
@@ -242,6 +261,7 @@ module.exports = function (grunt) {
       if (temp[0] !== "_") {
         return callback(null);
       }
+      temp = temp.slice(1, temp.length);
       if (paths[temp]) {
         dest = paths[temp](source);
       } else {
@@ -252,9 +272,15 @@ module.exports = function (grunt) {
     preprocess(
       grunt.file.read(source, { encoding: null }),
       source,
-      function (err, buffer) {
+      function (err, buffer, finalExtension) {
+        var destination;
+        //console.log(finalExtension);
         if (err) return callback(err);
-        grunt.file.write(dest, buffer);
+        destination = path.join(path.dirname(dest), finalExtension);
+        if (isPrivate(filename)) {
+          destination = dest;
+        }
+        grunt.file.write(destination, buffer);
         callback(null);
       }
     );
