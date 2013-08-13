@@ -118,6 +118,27 @@ module.exports = function (grunt) {
    * A key-value pair of all hidden directories that are
    */
   paths = {
+    "posts": function (filename) {
+      var newName = filename, date;
+      while (newName !== path.basename(newName, path.extname(newName))) {
+        newName = path.basename(newName, path.extname(newName));
+      }
+      date = newName.match(/^\d+-\d+-\d+-/)[0];
+      newName = newName.slice(date.length, newName.length);
+      date = date.slice(0, date.length - 1).split("-");
+
+      return path.resolve(
+        __dirname,
+        ".stage",
+        "blog",
+        date[0],
+        date[1],
+        date[2],
+        newName,
+        "index.html"
+      );
+    },
+
     "pages": function (filename) {
       var newName = filename;
       while (newName !== path.basename(newName, path.extname(newName))) {
@@ -264,6 +285,9 @@ module.exports = function (grunt) {
       temp = temp.slice(1, temp.length);
       if (paths[temp]) {
         dest = paths[temp](source);
+        if (!dest) {
+          return callback(null);
+        }
       } else {
         return callback(null);
       }
