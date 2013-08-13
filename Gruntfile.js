@@ -124,6 +124,7 @@ module.exports = function (grunt) {
         newName = path.basename(newName, path.extname(newName));
       }
       date = newName.match(/^\d+-\d+-\d+-/)[0];
+      if (!date) return null;
       newName = newName.slice(date.length, newName.length);
       date = date.slice(0, date.length - 1).split("-");
 
