@@ -1,12 +1,7 @@
 !!! 5
 block vars
   - var bodyclass = null;
-//[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]
-//[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]
-//[if IE 8]>         <html class="no-js lt-ie9"> <![endif]
-//[if gt IE 8]><!
-html(lang='en', class='proload no-js')
-  //<![endif]
+html(lang='en')
   head
     block head
       meta(charset='utf-8')
@@ -15,56 +10,27 @@ html(lang='en', class='proload no-js')
       title
         block title
           = locals.name
-      meta(name='description', content='I&rquote;m a programmer')
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-
       link(rel='alternate', href=locals.url+'/feed.xml', type='application/rss+xml', title=locals.description)
-      
-      //- TODO: minify these.
-      link(rel='stylesheet', href='/css/preload.css')
-      link(rel='stylesheet', href='/css/normalize.css')
+      link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300')
       link(rel='stylesheet', href='/css/main.css')
-      link(rel='stylesheet', href='/tooltipster/css/tooltipster.css')
-
-      link(rel='stylesheet', href='/css/style.css')
   body(class=bodyclass)
-    //[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]
-
-    div(class='container')
-      block content
-
-    script(src='/js/vendor/jquery-1.10.2.min.js')
-    script(src='/tooltipster/js/jquery.tooltipster.min.js')
-    script(src='/js/main.js')
-
-    script.
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-19354344-2');ga('send','pageview');
-
-    //-
-      header.header
-        div.content-wrap
-          block header
-            div.logo
-              h1
-                a(href=locals.url)= locals.name
-              p.description= locals.description
-      div#content
-        div.content-wrap
-          block content
-            h2 Welcome to zombocom!
-      footer
-        div.content-wrap
-          block footer
-            section.about
-              !=contents['about.md'].html
-            section.copy
-              p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
-                a(href='https://github.com/jnordberg/wintersmith') Wintersmith
-                //- please leave the "powered by" if you use the design
+    header.header
+      div.content-wrap
+        block header
+          div.logo
+            h1
+              a(href=locals.url)= locals.name
+            p.description= locals.description
+    div#content
+      div.content-wrap
+        block content
+          h2 Welcome to zombocom!
+    footer
+      div.content-wrap
+        block footer
+          section.about
+            !=contents['about.md'].html
+          section.copy
+            p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
+              a(href='https://github.com/jnordberg/wintersmith') Wintersmith
+              //- please leave the "powered by" if you use the design

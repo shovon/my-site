@@ -6,8 +6,7 @@
     "description": "Ramblings of an immor(t)al demigod"
   },
   "plugins": [
-    "./plugins/paginator.coffee",
-    "wintersmith-less"
+    "./plugins/paginator.coffee"
   ],
   "require": {
     "moment": "moment",

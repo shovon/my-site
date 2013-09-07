@@ -4,8 +4,5 @@
     "underscore": "1.4.x",
     "typogr": "0.5.x"
   },
-  "repository": "none",
-  "devDependencies": {
-    "wintersmith-less": "~0.2.1"
-  }
+  "repository": "none"
 }

@@ -1,27 +1,19 @@
 extends layout
 
 block content
-  div(class='intro')
-    div(class='intro-inner')
-      h1 Salehen Shovon Rahman
-      nav
-        ul
-          li(data-tooltip, title='I tweet')
-            a(href='http://twitter.com/shovon_rahman') Twitter
-  //-
-    include author
-    each article in articles
-      article.article.intro
-        header
-          p.date
-            span= moment(article.date).format('DD. MMMM YYYY')
-          h2
-            a(href=article.url)= article.title
-        section.content
-          !{ typogr(article.intro).typogrify() }
-          if article.hasMore
-            p.more
-              a(href=article.url) more
+  include author
+  each article in articles
+    article.article.intro
+      header
+        p.date
+          span= moment(article.date).format('DD. MMMM YYYY')
+        h2
+          a(href=article.url)= article.title
+      section.content
+        !{ typogr(article.intro).typogrify() }
+        if article.hasMore
+          p.more
+            a(href=article.url) more
 
 block prepend footer
   div.nav
