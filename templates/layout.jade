@@ -25,8 +25,8 @@ html(lang='en')
             hav
               ul
                 mixin social-link(symbol, color, url, text)
-                  li(data-tooltip, title='#{text}')
-                    a.social(href='#{url}', data-background='#{color}', style='background-color: #{color};', target='_blank')
+                  li(data-tooltip, title='#{text}', data-background='#{color}')
+                    a.social(href='#{url}', style='background-color: #{color};', target='_blank')
                       span(class='symbol') 
                         !=symbol
                 mixin social-link('&#xe086;', '\#0096ff', 'https://twitter.com/shovon_rahman', 'I tweet')
