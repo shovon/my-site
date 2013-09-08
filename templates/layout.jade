@@ -17,8 +17,8 @@ html(lang='en')
         title=locals.description)
       link(rel='stylesheet', href='/css/main.css')
   body(class=bodyclass)
-    header#hero-unit.hero-unit
-      block header
+    block header
+      header#hero-unit.hero-unit
         .container
           hgroup.intro
             h1 Salehen Shovon Rahman
@@ -37,11 +37,17 @@ html(lang='en')
                 mixin social-link('&#xe099;', '\#942424', 'https://youtube.com/user/shovonRahman', 'My music as videos')
                 mixin social-link('&#xe024;', '\#778b93', 'mailto:salehen.rahman@gmail.com', 'Email me')
             p
-              | I'm a programmer, and I do a bunch of stuff on the Internet.
-              | Although, I'm mostly programming, but I also produce electronic
-              | music. My favourite genre is progressive house. Friend me up on
-              | the Internet social sphere. And most importantly, do not be
-              | afraid to say hi. I'm a friendly guy.
+              | I'm a 
+              strong programmer
+              |, and I do a bunch of stuff on the Internet.
+              | Although, I'm mostly programming, 
+              strong I also produce electronic music
+              |. My favourite genre is progressive house. 
+              strong Friend me up on
+              |  the Internet social sphere. And most importantly, do not be
+              | afraid to 
+              strong say hi
+              |. I'm a friendly guy.
 
     div#content
       div.content-wrap

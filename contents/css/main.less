@@ -52,7 +52,11 @@ a.symbol:before {
 }
 
 .hero-unit {
-
+  
+  h1, p {
+    transition: color 200ms;
+  }
+  
   &.white {
     h1, p {
       color: white;
@@ -102,6 +106,10 @@ a.symbol:before {
     }
   }
 
+}
+
+.text-align-right {
+  text-align: right;
 }
 
 .container {
