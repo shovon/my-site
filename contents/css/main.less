@@ -1,5 +1,7 @@
 @import "../extra_dependencies/normalize/normalize.less";
 
+@font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+
 .box-sizing(@box-model) {
   -webkit-box-sizing: @box-model;
   -moz-box-sizing: @box-model;
@@ -16,6 +18,16 @@
   src: url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+body, h1, h2, h3, h4, h5, h6, p {
+  font-family: @font-family;
+  font-weight: normal;
+  color: #444;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 .symbol, a.symbol:before {
@@ -38,27 +50,52 @@ a.symbol:before {
   font-size: 130%;
 }
 
-hgroup.intro {
-  ul {
-    padding: 0;
-    list-style: none;
-    li {
-      display: inline-block;
-      .social {
-        .box-sizing(border-box);
-        width: 60px;
-        height: 60px;
-        padding-top: 1px;
-        padding-left: 9px;
-        margin-right: 10px;
-        text-decoration: none;
+.hero-unit {
+
+  padding-top: 160px;
+  padding-bottom: 160px;
+
+  border-bottom: 1px solid #ccc;
+
+  hgroup.intro {
+    ul {
+      transition: opacity 200ms;
+      opacity: 0.4;
+      padding: 0;
+      list-style: none;
+      li {
         display: inline-block;
-        border-radius: 100px;
-        color: white;
+        .social {
+          .box-sizing(border-box);
+          width: 60px;
+          height: 60px;
+          padding-top: 1px;
+          padding-left: 9px;
+          margin-right: 10px;
+          text-decoration: none;
+          display: inline-block;
+          border-radius: 100px;
+          color: white;
+        }
+        .symbol {
+          font-size: 50px;
+        }
       }
-      .symbol {
-        font-size: 50px;
+
+      &:hover {
+        opacity: 1;
       }
     }
+
+    p {
+      font-size: 1.5em;
+      line-height: 1.5em;
+    }
   }
+
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
 }

@@ -17,7 +17,7 @@ html(lang='en')
         title=locals.description)
       link(rel='stylesheet', href='/css/main.css')
   body(class=bodyclass)
-    header
+    header.hero-unit
       block header
         .container
           hgroup.intro
@@ -56,3 +56,6 @@ html(lang='en')
             p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
               a(href='https://github.com/jnordberg/wintersmith') Wintersmith
               //- please leave the "powered by" if you use the design
+    
+    block scripts
+      script(src="/js/main.js")
