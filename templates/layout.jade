@@ -17,25 +17,25 @@ html(lang='en')
         title=locals.description)
       link(rel='stylesheet', href='/css/main.css')
   body(class=bodyclass)
-    header.hero-unit
+    header#hero-unit.hero-unit
       block header
         .container
           hgroup.intro
             h1 Salehen Shovon Rahman
             hav
               ul
-                mixin social-link(symbol, color, url)
-                  li
+                mixin social-link(symbol, color, url, text)
+                  li(data-tooltip, title='#{text}')
                     a.social(href='#{url}', data-background='#{color}', style='background-color: #{color};', target='_blank')
                       span(class='symbol') 
                         !=symbol
-                mixin social-link('&#xe086;', '\#0096ff', 'https://twitter.com/shovon_rahman')
-                mixin social-link('&#xe037;', '\#242424', 'https://github.com/shovon')
-                mixin social-link('&#xe052;', '\#367da6', 'http://ca.linkedin.com/in/salehenrahman/')
-                mixin social-link('&#xe039;', '\#00bc66', 'https://plus.google.com/105481576429214918750')
-                mixin social-link('&#xe078;', '\#ff6600', 'https://soundcloud.com/shovonrahman')
-                mixin social-link('&#xe099;', '\#942424', 'https://youtube.com/user/shovonRahman')
-                mixin social-link('&#xe024;', '\#778b93', 'mailto:salehen.rahman@gmail.com')
+                mixin social-link('&#xe086;', '\#0096ff', 'https://twitter.com/shovon_rahman', 'I tweet')
+                mixin social-link('&#xe037;', '\#242424', 'https://github.com/shovon', 'I code')
+                mixin social-link('&#xe052;', '\#367da6', 'http://ca.linkedin.com/in/salehenrahman/', 'Connect with me')
+                mixin social-link('&#xe039;', '\#00bc66', 'https://plus.google.com/105481576429214918750', 'Add me to your circle')
+                mixin social-link('&#xe078;', '\#ff6600', 'https://soundcloud.com/shovonrahman', 'My music')
+                mixin social-link('&#xe099;', '\#942424', 'https://youtube.com/user/shovonRahman', 'My music as videos')
+                mixin social-link('&#xe024;', '\#778b93', 'mailto:salehen.rahman@gmail.com', 'Email me')
             p
               | I'm a programmer, and I do a bunch of stuff on the Internet.
               | Although, I'm mostly programming, but I also produce electronic
@@ -58,4 +58,6 @@ html(lang='en')
               //- please leave the "powered by" if you use the design
     
     block scripts
+      script(src="/bower_components/jquery/jquery.js")
+      script(src="/bower_components/tooltipster/js/jquery.tooltipster.js")
       script(src="/js/main.js")

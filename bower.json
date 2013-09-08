@@ -1,0 +1,21 @@
+{
+  "name": "my-site",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shovon/my-site",
+  "authors": [
+    "Salehen Shovon Rahman <salehen.rahman@gmail.com>"
+  ],
+  "description": "This is my personal website.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3"
+  }
+}

@@ -1,4 +1,5 @@
 @import "../extra_dependencies/normalize/normalize.less";
+@import "../extra_dependencies/tooltipster/tooltipster.less";
 
 @font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 
@@ -65,13 +66,13 @@ a.symbol:before {
       list-style: none;
       li {
         display: inline-block;
+        margin-right: 15px;
         .social {
           .box-sizing(border-box);
           width: 60px;
           height: 60px;
           padding-top: 1px;
           padding-left: 9px;
-          margin-right: 10px;
           text-decoration: none;
           display: inline-block;
           border-radius: 100px;
@@ -98,4 +99,21 @@ a.symbol:before {
 .container {
   width: 85%;
   margin: 0 auto;
+}
+
+/**
+ * This is the tooltip theme.
+ */
+.tooltip-simple-black {
+  border-radius: 5px;
+  background: black;
+  color: #fff;
+  text-align: center;
+
+  /* Use this next selector to style things like font-size and line-height: */
+  .tooltipster-content {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 20px;
+    padding: 15px 10px;
+  }
 }

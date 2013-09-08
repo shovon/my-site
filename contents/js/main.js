@@ -1,5 +1,10 @@
 (function ($) {
+  'use strict';
+
   $(function () {
-    console.log('Hello, World!');
+    $('[data-tooltip]').tooltipster({
+      delay: 0,
+      theme: '.tooltip-simple-black'
+    });
   });
 }(window.jQuery));
