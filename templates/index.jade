@@ -1,21 +1,22 @@
 extends layout
 
 block content
-  each article in articles
-    article.article.intro
-      header
-        p.date
-          span= moment(article.date).format('DD. MMMM YYYY')
-        h2
-          a(href=article.url)= article.title
-      section.content
-        !{ typogr(article.intro).typogrify() }
-        if article.hasMore
-          p.more
-            a(href=article.url) more
+  div.container.articles
+    each article in articles
+      article
+        header
+          h2
+            a(href=article.url)= article.title
+          p
+            span= moment(article.date).format('MMMM DD, YYYY')
+        section
+          !{ typogr(article.intro).typogrify() }
+          if article.hasMore
+            p
+              a(href=article.url) more
 
 block prepend footer
-  div.nav
+  div.container
     if prevPage
       a(href=prevPage.url) « Newer
     else
