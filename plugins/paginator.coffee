@@ -28,10 +28,7 @@ module.exports = (env, callback) ->
     constructor: (@pageNum, @articles) ->
 
     getFilename: ->
-      if @pageNum is 1
-        options.first
-      else
-        options.filename.replace '%d', @pageNum
+      options.filename.replace '%d', @pageNum
 
     getView: -> (env, locals, contents, templates, callback) ->
       # simple view to pass articles and pagenum to the paginator template
