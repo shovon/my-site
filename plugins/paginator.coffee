@@ -28,7 +28,10 @@ module.exports = (env, callback) ->
     constructor: (@pageNum, @articles) ->
 
     getFilename: ->
-      options.filename.replace '%d', @pageNum
+      if @pageNum is 1
+        options.first
+      else
+        options.filename.replace '%d', @pageNum
 
     getView: -> (env, locals, contents, templates, callback) ->
       # simple view to pass articles and pagenum to the paginator template
@@ -40,7 +43,7 @@ module.exports = (env, callback) ->
         return callback new Error "unknown paginator template '#{ options.template }'"
 
       # setup the template context
-      ctx = {contents, @articles, @prevPage, @nextPage}
+      ctx = {env, contents, @articles, @prevPage, @nextPage}
 
       # extend the template context with the enviroment locals
       env.utils.extend ctx, locals
