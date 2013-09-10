@@ -1,0 +1,52 @@
+extends layout
+
+block header
+  header#hero-unit.hero-unit
+    .container
+      hgroup.intro
+        h1 Salehen Shovon Rahman
+        hav
+          ul
+            for social in socials
+              li(data-tooltip, title='#{social.text}', data-background='#{social.color}')
+                a.social(href='#{social.url}', style='background-color: #{social.color}', target='_blank')
+                  span(class='symbol')
+                    !=social.symbol
+        p
+          | I'm a 
+          strong programmer
+          |, and I do a bunch of stuff on the Internet.
+          | Although, I'm mostly programming, 
+          strong I also produce electronic music
+          |. My favourite genre is progressive house. 
+          strong Friend me up on
+          |  the Internet social sphere. And most importantly, do not be
+          | afraid to 
+          strong say hi
+          |. I'm a friendly guy.
+
+block content
+  div.container
+    h2 From the Blog
+  div.container.articles
+    each article in articles
+      article
+        header
+          p
+            span= moment(article.date).format('MMMM DD, YYYY')
+          h2
+            a(href=article.url)= article.title
+        section
+          !{ typogr(article.intro).typogrify() }
+          if article.hasMore
+            p.text-align-right
+              a(href=article.url) more
+
+block prepend footer
+  div.container
+    if prevPage
+      a(href=prevPage.url) « Newer
+    else
+      a(href='/archive.html') « Archives
+    if nextPage
+      a(href=nextPage.url) Previous posts »

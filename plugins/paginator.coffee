@@ -6,8 +6,7 @@ module.exports = (env, callback) ->
   defaults =
     template: 'index.jade' # template that renders pages
     articles: 'articles' # directory containing contents to paginate
-    first: 'index.html' # filename/url for first page
-    filename: 'page/%d/index.html' # filename for rest of pages
+    filename: 'blog/page/%d/index.html' # filename for rest of pages
     perPage: 2 # number of articles per page
 
   # assign defaults any option not set in the config file
@@ -28,10 +27,7 @@ module.exports = (env, callback) ->
     constructor: (@pageNum, @articles) ->
 
     getFilename: ->
-      if @pageNum is 1
-        options.first
-      else
-        options.filename.replace '%d', @pageNum
+      options.filename.replace '%d', @pageNum
 
     getView: -> (env, locals, contents, templates, callback) ->
       # simple view to pass articles and pagenum to the paginator template
