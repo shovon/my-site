@@ -1,5 +1,8 @@
 extends layout
 
+block styles
+  link(rel='stylesheet', href='/css/blog.css')
+
 block content
   div.container.articles
     each article in articles

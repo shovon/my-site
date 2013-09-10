@@ -8,7 +8,7 @@ block header
     .container
       hgroup.intro
         h1 Salehen Shovon Rahman
-        hav
+        nav
           ul
             for social in socials
               li(data-tooltip, title='#{social.text}', data-background='#{social.color}')
@@ -29,8 +29,8 @@ block header
           |. I'm a friendly guy.
 
 block content
-  div.container.home-blog
-    h2 From the Blog
+  div.container
+    h2.text-align-center From the Blog
   div.container.articles
     each article in articles
       article
@@ -51,3 +51,8 @@ block prepend footer
     a(class='prev', href="/blog") Previous posts »
     //- TODO: use clearfix.
     .clear
+
+block scripts
+  script(src="/bower_components/jquery/jquery.js")
+  script(src="/bower_components/tooltipster/js/jquery.tooltipster.js")
+  script(src="/js/main.js")

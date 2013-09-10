@@ -18,11 +18,12 @@ html(lang='en')
       link(rel='stylesheet', href='/css/base.css')
   body(class=bodyclass)
     block header
+      nav
+        div.name #{ locals.owner }
 
     div#content
       div.content-wrap
         block content
-          h2 Welcome to zombocom!
     footer
       div.content-wrap
         block footer
@@ -32,6 +33,3 @@ html(lang='en')
               //- please leave the "powered by" if you use the design
     
     block scripts
-      script(src="/bower_components/jquery/jquery.js")
-      script(src="/bower_components/tooltipster/js/jquery.tooltipster.js")
-      script(src="/js/main.js")
