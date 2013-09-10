@@ -1,13 +1,4 @@
-@import "../extra_dependencies/normalize/normalize.less";
-@import "../extra_dependencies/tooltipster/tooltipster.less";
-
-@font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-
-.box-sizing(@box-model) {
-  -webkit-box-sizing: @box-model;
-  -moz-box-sizing: @box-model;
-  box-sizing: @box-model;
-}
+@import "base.less";
 
 @font-face {
   font-family: 'Mono Social Icons Font';
@@ -19,16 +10,6 @@
   src: url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
-
-body, h1, h2, h3, h4, h5, h6, p {
-  font-family: @font-family;
-  font-weight: normal;
-  color: #444;
-}
-
-h1 {
-  font-size: 2em;
 }
 
 .symbol, a.symbol:before {
@@ -45,10 +26,18 @@ h1 {
   font-smoothing: antialiased;
 }
 
+a {
+  text-decoration: none;
+}
+
 a.symbol:before {
   content: attr(title);
   margin-right: 0.3em;
   font-size: 130%;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 .hero-unit {
@@ -141,9 +130,38 @@ a.symbol:before {
     header {
       text-align: center;
     }
-    section {
+    h3 {
       font-size: 1.5em;
-      line-height: 1.5em;
     }
+    section {
+      max-width: 840px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      line-height: 1.7em;
+    }
+  }
+}
+
+.home-blog {
+  h2 {
+    text-align: center;
+  }
+}
+
+.copy {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+
+.nav-footer {
+  padding-top: 10px;
+  a {
+    &.prev {
+      float: right;
+    }
+    //display: block;
   }
 }

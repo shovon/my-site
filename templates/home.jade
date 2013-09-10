@@ -1,5 +1,8 @@
 extends layout
 
+block styles
+  link(rel='stylesheet', href='/css/home.css')
+
 block header
   header#hero-unit.hero-unit
     .container
@@ -26,7 +29,7 @@ block header
           |. I'm a friendly guy.
 
 block content
-  div.container
+  div.container.home-blog
     h2 From the Blog
   div.container.articles
     each article in articles
@@ -34,7 +37,7 @@ block content
         header
           p
             span= moment(article.date).format('MMMM DD, YYYY')
-          h2
+          h3
             a(href=article.url)= article.title
         section
           !{ typogr(article.intro).typogrify() }
@@ -43,10 +46,8 @@ block content
               a(href=article.url) more
 
 block prepend footer
-  div.container
-    if prevPage
-      a(href=prevPage.url) « Newer
-    else
-      a(href='/archive.html') « Archives
-    if nextPage
-      a(href=nextPage.url) Previous posts »
+  div.container.nav-footer
+    a(href='/archive.html') « Archives
+    a(class='prev', href="/blog") Previous posts »
+    //- TODO: use clearfix.
+    .clear
