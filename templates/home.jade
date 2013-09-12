@@ -5,6 +5,7 @@ block styles
 
 block header
   header#hero-unit.hero-unit
+    //- TODO: having a container like that isn't very semantic
     .container
       hgroup.intro
         h1 Salehen Shovon Rahman
@@ -47,8 +48,7 @@ block content
 
 block prepend footer
   div.container.nav-footer
-    a(href='/archive.html') « Archives
-    a(class='prev', href="/blog") Previous posts »
+    a.prev(href="/blog") To the blog »
     //- TODO: use clearfix.
     .clear
 

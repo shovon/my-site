@@ -5,6 +5,39 @@
 
 @font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 
+// TODO: not all pages need this.
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.eot');
+  src: url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+       url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.woff') format('woff'),
+       url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+       url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../extra_dependencies/monosocialicons/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.symbol, a.symbol:before {
+  font-family: 'Mono Social Icons Font';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+a.symbol:before {
+  content: attr(title);
+  margin-right: 0.3em;
+  font-size: 130%;
+}
+
 body, h1, h2, h3, h4, h5, h6, p {
   font-family: @font-family;
   font-weight: normal;
@@ -46,4 +79,32 @@ article {
 
 .text-align-center {
   text-align: center;
+}
+
+.site-header {
+  padding: 10px 0;
+  hgroup {
+    h1 {
+      font-size: 1.5em;
+    }
+    nav {
+      ul {
+        list-style: none outside;
+        padding: 0;
+        li {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+// This isn't used everywhere. Move this class somewhere else.
+.nav-footer {
+  padding-top: 10px;
+  a {
+    &.prev {
+      float: right;
+    }
+  }
 }

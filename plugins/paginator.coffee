@@ -5,7 +5,7 @@ module.exports = (env, callback) ->
 
   defaults =
     template: 'blog.jade' # template that renders pages
-    articles: 'articles' # directory containing contents to paginate
+    articles: 'blog' # directory containing contents to paginate
     index: 'blog/index.html' # The blog's home page.
     filename: 'blog/page/%d/index.html' # filename for rest of pages
     perPage: 2 # number of articles per page
@@ -18,6 +18,7 @@ module.exports = (env, callback) ->
   getArticles = (contents) ->
     # helper that returns a list of articles found in *contents*
     # note that each article is assumed to have its own directory in the articles directory
+    #console.log options.articles
     articles = contents[options.articles]._.directories.map (item) -> item.index
     articles.sort (a, b) -> b.date - a.date
     return articles

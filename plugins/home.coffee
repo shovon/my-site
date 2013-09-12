@@ -2,7 +2,7 @@ module.exports = (env, callback) ->
 
   defaults =
     template: 'home.jade'
-    articles: 'articles'
+    articles: 'blog'
     filename: 'index.html'
     blogPage: '/blog'
     articlesPerPage: 3

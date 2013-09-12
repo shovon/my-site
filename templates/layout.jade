@@ -15,11 +15,18 @@ html(lang='en')
       type='application/rss+xml',
       title=locals.description)
     block styles
-      link(rel='stylesheet', href='/css/base.css')
+      link(rel='stylesheet', href='/css/layout.css')
   body(class=bodyclass)
     block header
-      nav
-        div.name #{ locals.owner }
+      header.site-header
+        hgroup.container
+          h1 #{ locals.owner }
+          nav
+            ul
+              for social in env.config.home.socials
+                li(data-tooltip, title=social.text, data-background=social.color)
+                  span(class='symbol')
+                    !=social.symbol
 
     div#content
       div.content-wrap
@@ -27,7 +34,7 @@ html(lang='en')
     footer
       div.content-wrap
         block footer
-          section.container.copy
+          section.container.copy.text-align-center
             p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
               a(href='https://github.com/jnordberg/wintersmith') Wintersmith
               //- please leave the "powered by" if you use the design
