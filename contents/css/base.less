@@ -81,18 +81,44 @@ article {
   text-align: center;
 }
 
+// TODO: not all pages need this either.
 .site-header {
-  padding: 10px 0;
+  padding: 5px 0;
   hgroup {
+    &:hover {
+      nav {
+        opacity: 1;
+      }
+    }
     h1 {
-      font-size: 1.5em;
+      font-size: 1.2em;
+      margin-bottom: 1px;
+      a {
+        color: #999;
+        // TODO: store the time in a variable.
+        transition: color 200ms;
+        &:hover {
+          color: #444;
+        }
+      }
     }
     nav {
+      transition: opacity 200ms;
+      opacity: 0.3;
       ul {
+        display: inline-block;
         list-style: none outside;
         padding: 0;
         li {
+          margin-right: 5px;
           display: inline-block;
+          a {
+            padding: 1px 5px;
+            font-size: 1.5em;
+            display: block;
+            border-radius: 200px;
+            color: white;
+          }
         }
       }
     }

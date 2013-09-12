@@ -1,10 +1,9 @@
 !!! 5
-block vars
-  - var bodyclass = null;
 html(lang='en')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    //- TODO: check to see if the site is mobile-ready.
     meta(name='viewport', content='width=device-width')
     title
       block title
@@ -16,27 +15,34 @@ html(lang='en')
       title=locals.description)
     block styles
       link(rel='stylesheet', href='/css/layout.css')
-  body(class=bodyclass)
+  body
     block header
       header.site-header
         hgroup.container
-          h1 #{ locals.owner }
+          h1
+            a(href="/") #{ locals.owner }
           nav
             ul
               for social in env.config.home.socials
-                li(data-tooltip, title=social.text, data-background=social.color)
-                  span(class='symbol')
-                    !=social.symbol
+                li(data-tooltip, title=social.text)
+                  a(href=social.url, target='_blank', style='background-color: #{ social.color }')
+                    span(class='symbol')
+                      !=social.symbol
 
-    div#content
-      div.content-wrap
-        block content
+    block content
+
     footer
       div.content-wrap
         block footer
           section.container.copy.text-align-center
-            p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
+            p
+              | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
+              | designed by 
+              a(href='https://twitter.com/shovon_rahman' target='_blank') 
+                | @shovon_rahman
+              |  &mdash; powered by&nbsp;
               a(href='https://github.com/jnordberg/wintersmith') Wintersmith
-              //- please leave the "powered by" if you use the design
+              //- please leave the "designed by" if you use the design, as well
+              //- as "powered by" if you use the site generator.
     
     block scripts
