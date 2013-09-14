@@ -4,7 +4,9 @@
     "moment": "2.x",
     "underscore": "1.4.x",
     "typogr": "0.5.x",
-    "wintersmith-less": "~0.2.1"
+    "wintersmith-less": "~0.2.1",
+    "grunt": "~0.4.1",
+    "grunt-wintersmith": "0.0.2"
   },
   "repository": "none"
 }
