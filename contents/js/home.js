@@ -17,4 +17,5 @@
       theme: '.tooltip-simple-black'
     });
   });
+
 }(window.jQuery));
