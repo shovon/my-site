@@ -1,5 +1,7 @@
 !!! 5
 html(lang='en')
+  //- TODO: minify the resulting HTML
+
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
@@ -14,14 +16,17 @@ html(lang='en')
       type='application/rss+xml',
       title=locals.description)
     block styles
+      //- TODO: Only one CSS file should be loaded.
       link(rel="stylesheet", href="/extra_dependencies/tooltipster/tooltipster.css")
       link(rel='stylesheet', href='/css/layout.css')
 
-    //- TODO: add analyticsl
+    //- TODO: add analytics
 
   body
     block header
       header.site-header
+        //- TODO: the CSS attributes of `.container` should automatically be a
+        //-   part of `hgroup` via some form of selector
         hgroup.container
           h1
             a(href="/") #{ locals.owner }
