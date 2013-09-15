@@ -7,6 +7,8 @@ template: article.jade
 
 This is my first post on a static website. I'm not using WordPress, nor Tumblr, or anything else. Purely a static site, so there are hardly any work done on the back-end. Whatever data you get sent to you, is merely files stored on a remote server. Where as on other sites, posts are stored as database entries.
 
+<span class="more"></span>
+
 For the latter types of sites, a back-end takes those entries, generates the HTML file, and sends the data to the client that requested the article.
 
 Now, which is faster?
