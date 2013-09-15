@@ -1,3 +1,5 @@
+# TODO: use bower instead of a shell script
+
 extra_dependencies='contents/extra_dependencies'
 cwd=`pwd`
 

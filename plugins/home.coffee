@@ -15,6 +15,7 @@ module.exports = (env, callback) ->
 
   options.socials ?= []
 
+  # TODO: move the article retrieval code somewhere else.
   getArticles = (contents) ->
     articles = contents[options.articles]._.directories.map((item) ->
       item.index
