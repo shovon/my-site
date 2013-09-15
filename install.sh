@@ -18,7 +18,7 @@ if [ ! -d `dirname $normalize_css` ]; then
   }
 fi
 
-monosocialicons=$extra_dependencies/monosocialicons
+monosocialicons=$extra_dependencies/monosocialiconsfont
 if [ ! -d $monosocialicons ]; then
   echo "Installing Mono Social Icons Font"
   {
