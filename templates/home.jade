@@ -48,9 +48,10 @@ block content
 
 block prepend footer
   div.container.nav-footer
-    a.prev(href="/blog") To the blog »
-    //- TODO: use clearfix.
-    .clear
+    - if (totalArticles > articlesPerPage)
+      a.prev(href="/blog/page/2") To the blog »
+      //- TODO: use clearfix.
+      .clear
 
 block scripts
   script(src="/bower_components/jquery/jquery.js")

@@ -18,7 +18,7 @@ module.exports = (env, callback) ->
   getArticles = (contents) ->
     articles = contents[options.articles]._.directories.map((item) ->
       item.index
-    ).slice(0, options.articlesPerPage)
+    )
     articles.sort (a, b) -> b.date - a.date
     return articles
 
@@ -36,7 +36,12 @@ module.exports = (env, callback) ->
       ctx =
         env: env
         contents: contents
-        articles: @articles
+        articles: @articles.slice 0, options.articlesPerPage
+
+        # TODO: This should be reviewed.
+        articlesPerPage: options.articlesPerPage
+        totalArticles: @articles.length
+
         blogPage: options.blogPage
         socials: options.socials
 
