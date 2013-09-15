@@ -25,6 +25,7 @@ if [ ! -d $monosocialicons ]; then
     git clone https://github.com/drinchev/monosocialiconsfont.git $monosocialicons
     cd $monosocialicons
     git checkout e3ad9be016132f1e2711bf41370bf1fa63ba3833
+    rm -rf ./.git
     cd $cwd
   } || {
     echo "Failed to install Mono Social Icons Font"
