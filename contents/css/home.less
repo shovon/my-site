@@ -1,0 +1,72 @@
+@import "base.less";
+
+h1 {
+  font-size: 2em;
+}
+
+.hero-unit {
+  h1, p {
+    transition: color 200ms;
+  }
+  
+  &.white {
+    h1, p {
+      color: white;
+    }
+  }
+
+  transition: background-color 200ms;
+
+  padding-top: 160px;
+  padding-bottom: 160px;
+
+  border-bottom: 1px solid #ccc;
+
+  hgroup.intro {
+    ul {
+      transition: opacity 200ms;
+      opacity: 0.4;
+      padding: 0;
+      list-style: none;
+      li {
+        display: inline-block;
+        margin-right: 15px;
+        .social {
+          .box-sizing(border-box);
+          width: 60px;
+          height: 60px;
+          padding-top: 1px;
+          padding-left: 9px;
+          text-decoration: none;
+          display: inline-block;
+          border-radius: 100px;
+          color: white;
+        }
+        .symbol {
+          font-size: 50px;
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    p {
+      font-size: 1.5em;
+      line-height: 1.5em;
+    }
+  }
+}
+
+.articles {
+  padding-top: 30px;
+}
+
+.copy {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}

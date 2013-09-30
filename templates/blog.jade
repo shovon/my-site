@@ -1,0 +1,25 @@
+extends blog-base
+
+block content
+  div.container.articles
+    each article in articles
+      article
+        header
+          p
+            span= moment(article.date).format('MMMM DD, YYYY')
+          h2
+            a(href=article.url)= article.title
+        section
+          !{ typogr(article.intro).typogrify() }
+          if article.hasMore
+            p.text-align-right
+              a(href=article.url) more
+
+block prepend footer
+  div.container.nav-footer
+    if prevPage
+      a(href=prevPage.url) « Newer
+    else
+      a(href='/archive.html') « Archives
+    if nextPage
+      a.prev(href=nextPage.url) Older »

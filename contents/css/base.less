@@ -1,0 +1,171 @@
+@import "../extra_dependencies/normalize/normalize.less";
+@import "../extra_dependencies/tooltipster/tooltipster.less";
+
+@import "highlight.less";
+@import "mixins.less";
+
+@font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+
+// TODO: not all pages need this.
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.woff') format('woff'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.symbol, a.symbol:before {
+  font-family: 'Mono Social Icons Font';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+a.symbol:before {
+  content: attr(title);
+  margin-right: 0.3em;
+  font-size: 130%;
+}
+
+body, h1, h2, h3, h4, h5, h6, p {
+  font-family: @font-family;
+  font-weight: normal;
+  color: #444;
+}
+
+a {
+  text-decoration: none;
+}
+
+article {
+  border-bottom: 1px solid #ddd;
+  header {
+    text-align: center;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  section, footer {
+    max-width: 840px;
+    margin: 0 auto;
+    font-size: 1.2em;
+    line-height: 1.7em;
+  }
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.copy {
+  font-size: 0.75em;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+// TODO: not all pages need this either.
+.site-header {
+  padding: 5px 0;
+  hgroup {
+    &:hover {
+      nav {
+        opacity: 1;
+      }
+    }
+    h1 {
+      font-size: 1.2em;
+      margin-bottom: 1px;
+      a {
+        color: #999;
+        // TODO: store the time in a variable.
+        transition: color 200ms;
+        &:hover {
+          color: #444;
+        }
+      }
+    }
+    nav {
+      transition: opacity 200ms;
+      opacity: 0.3;
+      ul {
+        display: inline-block;
+        list-style: none outside;
+        padding: 0;
+        li {
+          margin-right: 5px;
+          display: inline-block;
+          a {
+            padding: 1px 5px;
+            font-size: 1.5em;
+            display: block;
+            border-radius: 200px;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// This isn't used everywhere. Move this class somewhere else.
+.nav-footer {
+  padding-top: 10px;
+  a {
+    &.prev {
+      float: right;
+    }
+  }
+}
+
+/**
+ * This is the tooltip theme.
+ */
+.tooltip-simple-black {
+  border-radius: 5px;
+  background: black;
+  color: #fff;
+  text-align: center;
+
+  /* Use this next selector to style things like font-size and line-height: */
+  .tooltipster-content {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 20px;
+    padding: 15px 10px;
+  }
+}
+
+/**
+ * This is the tooltip theme.
+ */
+.tooltip-simple-black-small {
+  border-radius: 5px;
+  background: black;
+  color: #fff;
+  text-align: center;
+
+  /* Use this next selector to style things like font-size and line-height: */
+  .tooltipster-content {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 14px;
+    padding: 15px 10px;
+  }
+}

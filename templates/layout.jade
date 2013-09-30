@@ -1,0 +1,61 @@
+!!! 5
+html(lang='en')
+  //- TODO: minify the resulting HTML
+
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    //- TODO: check to see if the site is mobile-ready.
+    meta(name='viewport', content='width=device-width')
+    title
+      block title
+        = locals.name
+    link(
+      rel='alternate',
+      href=locals.url+'/feed.xml',
+      type='application/rss+xml',
+      title=locals.description)
+    block styles
+      //- TODO: Only one CSS file should be loaded.
+      link(rel="stylesheet", href="/extra_dependencies/tooltipster/tooltipster.css")
+      link(rel='stylesheet', href='/css/layout.css')
+
+    //- TODO: add analytics
+
+  body
+    block header
+      header.site-header
+        //- TODO: the CSS attributes of `.container` should automatically be a
+        //-   part of `hgroup` via some form of selector
+        hgroup.container
+          h1
+            a(href="/") #{ locals.owner }
+          nav
+            ul
+              for social in env.config.home.socials
+                li(data-tooltip, title=social.text)
+                  a(href=social.url, target='_blank', style='background-color: #{ social.color }')
+                    span(class='symbol')
+                      !=social.symbol
+
+    block content
+
+    footer
+      div.content-wrap
+        block footer
+          section.container.copy.text-align-center
+            p
+              | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
+              | designed by 
+              a(href='https://twitter.com/shovon_rahman', target='_blank') 
+                | @shovon_rahman
+              |  &mdash; powered by&nbsp;
+              a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
+              //- please leave the "designed by" if you use the design, as well
+              //- as "powered by" if you use the site generator.
+    
+    block scripts
+      //- TODO concatenate and minify.
+      script(src="/bower_components/jquery/jquery.js")
+      script(src="/extra_dependencies/tooltipster/jquery.tooltipster.js")
+      script(src="/js/layout.js")
