@@ -3,6 +3,27 @@
 @import 'blog-common.less';
 
 .blog-content {
+  margin-bottom: 40px;
+
+  & > div {
+    & > section {
+      .make-row();
+      border-bottom: 1px solid @black-10;
+    }
+    & > section article, nav {
+      .make-column(10);
+      .make-column-offset(1);
+    }
+
+    nav {
+      margin-top: 40px;
+    }
+
+    &:last-child {
+      .clearfix();
+    }
+  }
+
   article {
     .make-row();
 

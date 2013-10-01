@@ -49,7 +49,27 @@ html(lang='en')
                   li
                     span
                       a(href='#{article.url}')= article.title
-                    span= moment(article.date).format('MMMM DD, YYYY')
+                    span= moment(article.date).format('MMM DD, YYYY')
+
+            section
+              h3 About Me
+              p
+                | I'm Salehen Shovon Rahman, I write code, and I'm on the
+                | Internet a lot.
+
+            section
+              h3 Connect With Me
+              ul
+                for social in env.config.home.socials
+                  li(data-tooltip, title=social.text)
+                    a(href=social.url, target='_blank', style='background-color: #{ social.color }')
+                      span(class='symbol')
+                        !=social.symbol
+
+        div
+            p
+              | &copy; #{ new Date().getFullYear() } #{ locals.owner }
+
           //-
             section.container.copy.text-align-center
               p
@@ -61,7 +81,6 @@ html(lang='en')
                 a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
                 //- please leave the "designed by" if you use the design, as well
                 //- as "powered by" if you use the site generator.
-    
     block scripts
       //- TODO concatenate and minify.
       script(src="/bower_components/jquery/jquery.js")

@@ -28,16 +28,13 @@ block prepend title
 
 block content
   section.blog-content
-    div
-      section
-        article
-          header
-            include author
-            h1= page.title
-            p.author
-              | #{ "Written by " }
-              mixin author(page.metadata.author)
-          section!= typogr(page.html).typogrify()
+    section
+      article
+        header
+          include author
+          h1= page.title
+          p= moment(page.date).format('MMMM DD, YYYY')
+        section!= typogr(page.html).typogrify()
 
-          footer
-            mixin disqus('shovonrahman')
+        footer
+          mixin disqus('shovonrahman')

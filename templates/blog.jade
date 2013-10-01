@@ -6,9 +6,10 @@ block styles
 block content
   section.blog-content
     h2 The Blog
+
     div
-      section
-        each article in articles
+      each article in articles
+        section
           article
             header
               h3
@@ -21,11 +22,12 @@ block content
                 p.text-align-right
                   a(href=article.url) Read more
 
-    nav
-      if prevPage
-        a(href=prevPage.url) « Newer
-      else
-        a(href='/archive.html') « Archives
+    div
+      nav
+        if prevPage
+          a(href=prevPage.url) « Newer
+        else
+          a(href='/archive.html') « Archives
 
-      if nextPage
-        a.prev(href=nextPage.url) Older »
+        if nextPage
+          a.prev(href=nextPage.url) Older »

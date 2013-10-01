@@ -4,6 +4,8 @@
 @import "../extra_dependencies/normalize/normalize.less";
 @import "../extra_dependencies/tooltipster/tooltipster.less";
 
+@import '../extra_dependencies/preboot/preboot.less';
+
 @import "highlight.less";
 @import "mixins.less";
 
@@ -44,8 +46,21 @@ body, h1, h2, h3, h4, h5, h6, p {
   .font-normal();
 }
 
-a {
+a, a:link {
   text-decoration: none;
+  color: @brand-primary;
+}
+
+a:active {
+  color: @brand-danger;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: @brand-info;
 }
 
 article {
