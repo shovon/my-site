@@ -1,16 +1,17 @@
-@import "base.less";
+@import 'layout.less';
+@import 'mixins.less';
+@import 'blog-common.less';
 
-.site-header {
-  h1 {
-    a:first-child {
-      margin-right: 5px;
+.blog-content {
+  article {
+    .make-row();
+
+    header {
+      .make-column(4);
     }
-    a:last-child {
-      margin-left: 5px;
-      color: #aaa;
-    }
-    span {
-      color: #bbb;
+
+    section {
+      .make-column(8);
     }
   }
 }

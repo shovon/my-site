@@ -1,3 +1,87 @@
 // This is the style applied to pages that extend the layout.jade file
 
-@import "base.less";
+@import 'base.less';
+@import 'mixins.less';
+
+body > header {
+  border-bottom: 1px solid @black-10;
+  section {
+    .clearfix();
+    .container();
+    h2 {
+      float: left;
+      font-size: 18px;
+      a {
+        color: @black-60;
+      }
+    }
+    nav {
+      float: right;
+      ul {
+        list-style: none;
+        padding: 0;
+        li {
+          display: inline-block;
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+body > footer {
+  background-color: @black-80;
+  padding: 25px 0;
+  &, h3, p {
+    .font-normal-dark();
+  }
+  h3 {
+    border-bottom: 3px solid @black-70;
+    padding-bottom: 10px;
+  }
+  & > section {
+    .container();
+
+    & > div {
+      .make-row();
+
+      section:first-child {
+        .make-column(6);
+
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            .clearfix();
+
+            &:not(:first-child) {
+              padding-top: 10px;
+            }
+
+            &:not(:last-child) {
+              padding-bottom: 10px;
+            }
+            
+            &:not(:last-child) {
+              border-bottom: 1px dotted @black-70;
+            }
+
+            span:first-child {
+              float: left;
+              a {
+                color: white;
+              }
+            }
+
+            span:last-child {
+              float: right;
+              color: @black-60;
+            }
+          }
+        }
+      }
+    }
+  }
+}
