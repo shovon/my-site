@@ -17,6 +17,16 @@ body > header {
       font-size: 18px;
       a {
         color: @black-60;
+        .transition(color 200ms);
+      }
+
+      a:visited{
+        color: @black-40;
+      }
+
+      a:hover {
+        color: @black-70;
+        text-decoration: none;
       }
     }
     nav {
@@ -26,8 +36,17 @@ body > header {
         padding: 0;
         li {
           display: inline-block;
+          font-size: 14px;
           &:not(:last-child) {
             margin-right: 15px;
+          }
+
+          a {
+            color: @brand-primary;
+          }
+
+          a:visited {
+            color: @brand-primary;
           }
         }
       }
