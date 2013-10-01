@@ -1,54 +1,56 @@
 @import 'blog.less';
 
-.archive {
-  @border-color: #aaa;
-  @border: 1px solid @border-color;
+.blog-content {
+  @border: 1px solid @black-10;
 
-  max-width: 840px;
   font-size: 1.5em;
-  table {
-    width: 100%;
-    tr {
-      &:not(:last-child) {
-        border-bottom: @border;
-      }
-      &:not(:first-child) > td {
-        padding-top: 10px;
-      }
-      > td {
-        h3 {
-          margin: 0;
+  & > div {
+    max-width: 840px;
+    margin: 0 auto;
+    table {
+      width: 100%;
+      tr {
+        &:not(:last-child) {
+          border-bottom: @border;
         }
-        vertical-align: top;
-
-        &:first-child {
-          width: 20%;
+        &:not(:first-child) > td {
+          padding-top: 10px;
         }
+        > td {
+          h3 {
+            margin: 0;
+          }
+          vertical-align: top;
 
-        table {
-          tr {
-            td:first-child {
-              text-align: right;
-              width: 20%;
-              padding-right: 30px;
-              border:none;
-            }
+          &:first-child {
+            width: 20%;
+          }
 
-            td:last-child {
-              padding-left: 30px;
-              border:none;
+          table {
+            tr {
+              td:first-child {
+                text-align: right;
+                width: 20%;
+                padding-right: 30px;
+                border:none;
+              }
 
-              ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                > li {
-                  &:not(:first-child) {
-                    padding-top: 10px;
-                  }
-                  padding-bottom: 10px;
-                  &:not(:last-child) {
-                    border-bottom: @border;
+              td:last-child {
+                padding-left: 30px;
+                border:none;
+
+                ul {
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+                  > li {
+                    &:not(:first-child) {
+                      padding-top: 10px;
+                    }
+                    padding-bottom: 10px;
+                    &:not(:last-child) {
+                      border-bottom: @border;
+                    }
                   }
                 }
               }

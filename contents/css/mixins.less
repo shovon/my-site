@@ -1,5 +1,30 @@
+@import '../extra_dependencies/preboot/preboot.less';
+@import 'variables.less';
+
 .box-sizing(@box-model) {
   -webkit-box-sizing: @box-model;
   -moz-box-sizing: @box-model;
   box-sizing: @box-model;
+}
+
+.transition(@options) {
+  -webkit-transition: @options;
+  transition: @options;
+}
+
+.font-normal() {
+  font-family: @font-family;
+  font-weight: 300;
+  color: @black-80;
+}
+
+.font-normal-dark() {
+  font-family: @font-family;
+  color: @black-20;
+  font-weight: 300;
+}
+
+.container() {
+  width: 85%;
+  margin: 0 auto;
 }

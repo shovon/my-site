@@ -24,36 +24,63 @@ html(lang='en')
 
   body
     block header
-      header.site-header
-        //- TODO: the CSS attributes of `.container` should automatically be a
-        //-   part of `hgroup` via some form of selector
-        hgroup.container
-          h1
-            a(href="/") #{ locals.owner }
+      header
+        section
+          h2
+            a(href='/') #{ locals.name }
           nav
             ul
-              for social in env.config.home.socials
-                li(data-tooltip, title=social.text)
-                  a(href=social.url, target='_blank', style='background-color: #{ social.color }')
-                    span(class='symbol')
-                      !=social.symbol
+              //- TODO: maybe soft code these?
+              li
+                a(href='/') Home
+              li
+                a(href='/blog/') Blog
 
     block content
 
     footer
-      div.content-wrap
-        block footer
-          section.container.copy.text-align-center
+      block footer
+        section
+          div
+            section
+              h3 Recent Posts
+              ul
+                for article in articles
+                  li
+                    span
+                      a(href='#{article.url}')= article.title
+                    span= moment(article.date).format('MMM DD, YYYY')
+
+            section
+              h3 About Me
+              p
+                | I'm Salehen Shovon Rahman, I write code, and I'm on the
+                | Internet a lot.
+
+            section
+              h3 Connect With Me
+              ul.social-footer
+                for social in env.config.home.socials
+                  li(data-tooltip, title=social.text)
+                    a(href=social.url, target='_blank', style='background-color: #{ social.color }')
+                      span(class='symbol')
+                        !=social.symbol
+
+        div
             p
-              | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
-              | designed by 
-              a(href='https://twitter.com/shovon_rahman', target='_blank') 
-                | @shovon_rahman
-              |  &mdash; powered by&nbsp;
-              a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
-              //- please leave the "designed by" if you use the design, as well
-              //- as "powered by" if you use the site generator.
-    
+              | &copy; #{ new Date().getFullYear() } #{ locals.owner }
+
+          //-
+            section.container.copy.text-align-center
+              p
+                | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
+                | designed by 
+                a(href='https://twitter.com/shovon_rahman', target='_blank') 
+                  | @shovon_rahman
+                |  &mdash; powered by&nbsp;
+                a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
+                //- please leave the "designed by" if you use the design, as well
+                //- as "powered by" if you use the site generator.
     block scripts
       //- TODO concatenate and minify.
       script(src="/bower_components/jquery/jquery.js")

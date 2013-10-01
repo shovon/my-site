@@ -1,10 +1,15 @@
+// TODO: use a more thinner font for bold text. So far, the text is far too
+//   bold.
+
 @import "../extra_dependencies/normalize/normalize.less";
 @import "../extra_dependencies/tooltipster/tooltipster.less";
 
+@import '../extra_dependencies/preboot/preboot.less';
+
+//@import url(http://fonts.googleapis.com/css?family=Ubuntu:300);
+
 @import "highlight.less";
 @import "mixins.less";
-
-@font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 
 // TODO: not all pages need this.
 @font-face {
@@ -40,34 +45,35 @@ a.symbol:before {
 }
 
 body, h1, h2, h3, h4, h5, h6, p {
-  font-family: @font-family;
-  font-weight: normal;
-  color: #444;
+  .font-normal();
 }
 
-a {
+a, a:link {
   text-decoration: none;
+  color: @brand-primary;
+}
+
+a:active {
+  color: @brand-danger;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: @brand-info;
 }
 
 article {
-  border-bottom: 1px solid #ddd;
-  header {
-    text-align: center;
-  }
   h3 {
     font-size: 1.5em;
   }
   section, footer {
-    max-width: 840px;
     margin: 0 auto;
     font-size: 1.2em;
     line-height: 1.7em;
   }
-}
-
-.container {
-  width: 85%;
-  margin: 0 auto;
 }
 
 .copy {
@@ -147,7 +153,7 @@ article {
 
   /* Use this next selector to style things like font-size and line-height: */
   .tooltipster-content {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    .font-normal-dark();
     font-size: 20px;
     padding: 15px 10px;
   }

@@ -1,7 +1,7 @@
 {
   "locals": {
     "url": "http://localhost:8080",
-    "name": "Salehen Shovon Rahman",
+    "name": "shovon.github.io",
     "owner": "Salehen Shovon Rahman",
     "description": "Ramblings of an immor(t)al demigod"
   },
@@ -54,6 +54,7 @@
   "plugins": [
     "./plugins/paginator.coffee",
     "./plugins/home.coffee",
+    "./plugins/posts.coffee",
     "wintersmith-less"
   ],
   "require": {

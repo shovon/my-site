@@ -3,7 +3,7 @@
 
   $(function () {
     var $hero = $('.hero-unit');
-    var $nav = $hero.find('.intro ul');
+    var $nav = $hero.find('hgroup ul');
     var $navEl = $nav.find('[data-tooltip]');
     $nav.mouseleave(function () {
       $hero.css({'background-color': ''}).removeClass('white');

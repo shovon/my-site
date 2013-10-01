@@ -1,16 +1,38 @@
-@import "base.less";
+@import 'layout.less';
+@import 'mixins.less';
+@import 'blog-common.less';
 
-.site-header {
-  h1 {
-    a:first-child {
-      margin-right: 5px;
+.blog-content {
+  margin-bottom: 40px;
+
+  & > div {
+    & > section {
+      .make-row();
+      border-bottom: 1px solid @black-10;
     }
-    a:last-child {
-      margin-left: 5px;
-      color: #aaa;
+    & > section article, nav {
+      .make-column(10);
+      .make-column-offset(1);
     }
-    span {
-      color: #bbb;
+
+    nav {
+      margin-top: 40px;
+    }
+
+    &:last-child {
+      .clearfix();
+    }
+  }
+
+  article {
+    .make-row();
+
+    header {
+      .make-column(4);
+    }
+
+    section {
+      .make-column(8);
     }
   }
 }

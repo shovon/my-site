@@ -1,12 +1,14 @@
-@import "base.less";
+@import 'layout.less';
+@import 'mixins.less';
 
 h1 {
   font-size: 2em;
 }
 
 .hero-unit {
+
   h1, p {
-    transition: color 200ms;
+    .transition(color 200ms);
   }
   
   &.white {
@@ -15,16 +17,16 @@ h1 {
     }
   }
 
-  transition: background-color 200ms;
+  .transition(background-color 200ms);
 
-  padding-top: 160px;
-  padding-bottom: 160px;
+  padding-top: 130px;
+  padding-bottom: 130px;
 
-  border-bottom: 1px solid #ccc;
+  hgroup {
+    .container();
 
-  hgroup.intro {
     ul {
-      transition: opacity 200ms;
+      .transition(opacity 200ms);
       opacity: 0.4;
       padding: 0;
       list-style: none;

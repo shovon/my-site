@@ -1,4 +1,4 @@
-# TODO: use bower instead of a shell script
+# TODO: use Grunt + Bower instead of shell scripts
 
 extra_dependencies='contents/extra_dependencies'
 cwd=`pwd`
@@ -49,5 +49,21 @@ if [ ! -d $tooltipster ]; then
     curl https://raw.github.com/iamceege/tooltipster/2.1.4/css/tooltipster.css > $tooltipster_css
   } || {
     echo "Failed to install Tooltipster"
+  }
+fi
+
+preboot=$extra_dependencies/preboot
+if [ ! -d $preboot ]; then
+  echo "Installing Preboot"
+  {
+    preboot_less=$preboot/preboot.less
+
+    mkdir -p $preboot
+
+    touch $preboot_less
+
+    curl https://raw.github.com/mdo/preboot/v2/less/preboot.less > $preboot_less
+  } || {
+    echo "Failed to install Preboot"
   }
 fi
