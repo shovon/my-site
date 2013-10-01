@@ -31,7 +31,6 @@ block content
     section
       article
         header
-          include author
           h1= page.title
           p= moment(page.date).format('MMMM DD, YYYY')
         section!= typogr(page.html).typogrify()
