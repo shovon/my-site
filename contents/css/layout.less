@@ -3,6 +3,10 @@
 @import 'base.less';
 @import 'mixins.less';
 
+html {
+  min-height: 100%;
+}
+
 body > header {
   border-bottom: 1px solid @black-10;
   section {
@@ -34,6 +38,13 @@ body > header {
 body > footer {
   background-color: @black-80;
   padding: 15px 0;
+  
+  &.push-down {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
   &, h3, p {
     .font-normal-dark();
   }
@@ -85,6 +96,9 @@ body > footer {
       }
 
       section:nth-child(2) {
+        h3 {
+          margin-bottom: -5px;
+        }
         p {
           line-height: 25px;
         }
@@ -107,6 +121,10 @@ body > footer {
               border-radius: 50px;
               padding: 1px 5px;
               color: white;
+              .transition(opacity 200ms);
+              &:hover {
+                opacity: 1;
+              }
             }
           }
         }
