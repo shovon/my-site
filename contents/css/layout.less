@@ -71,11 +71,25 @@ body > footer {
     border-bottom: 3px solid @black-70;
     padding-bottom: 10px;
   }
+
   & > section {
     .container();
 
     & > div {
       .make-row();
+
+      // TODO: dump the use of psuedo-class, and stick to using plain old
+      // classes.
+
+      @media (max-width: (@grid-float-breakpoint - 1px)) {
+        section:not(:first-child) {
+          margin-top: 50px;
+        }
+
+        section:first-child {
+          margin-top: 40px;
+        }
+      }
 
       section:first-child {
         .make-column(4);
