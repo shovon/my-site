@@ -9,7 +9,3 @@ Although, this site uses Wintersmith, it's prefereable to use Grunt with Winters
 ```shell
 grunt wintersmith
 ```
-
-## TODO:
-
-- have multiple settings file for multiple environments
