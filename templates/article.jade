@@ -17,4 +17,4 @@ block content
 
         footer
           include mixins
-          mixin disqus(disqusShortname)
+          mixin disqus(disqusShortname, page.title, page.date.getTime())
