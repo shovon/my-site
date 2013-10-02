@@ -17,6 +17,8 @@ module.exports = (env, callback) ->
 
   options.socials ?= []
 
+  options.articles = env.config.shared.articles or options.articles
+
   getArticles = (contents) ->
     articles = contents[options.articles]._.directories.map((item) ->
       item.index

@@ -1,3 +1,6 @@
+//import "../bower_components/jquery/jquery.js"
+//import "../bower_components/tooltipster/js/jquery.tooltipster.js"
+
 (function ($) {
   'use strict';
 
@@ -48,3 +51,5 @@
   });
 
 }(window.jQuery));
+
+//import "layout.js"

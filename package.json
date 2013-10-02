@@ -6,7 +6,9 @@
     "typogr": "0.5.x",
     "wintersmith-less": "~0.2.1",
     "grunt": "~0.4.1",
-    "grunt-wintersmith": "0.0.2"
+    "grunt-wintersmith": "0.0.2",
+    "importer": "~0.7.0",
+    "async": "~0.2.9"
   },
   "repository": "none"
 }

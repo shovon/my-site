@@ -53,10 +53,17 @@
       }
     ]
   },
+  "jsconcat": {
+    "minify": false
+  },
+  "shared": {
+    "articles": "blog"
+  },
   "plugins": [
     "./plugins/paginator.coffee",
     "./plugins/home.coffee",
     "./plugins/posts.coffee",
+    "./plugins/jsconcat.coffee",
     "wintersmith-less"
   ],
   "require": {

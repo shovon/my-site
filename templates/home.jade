@@ -3,6 +3,9 @@ extends layout
 block styles
   link(rel='stylesheet', href='/css/home.css')
 
+block scripts
+  script(src="/js/home.js")
+
 block content
   section
     hgroup
@@ -26,9 +29,3 @@ block content
         | afraid to 
         strong say hi
         |. I'm a friendly guy.
-
-block scripts
-  script(src="/bower_components/jquery/jquery.js")
-  script(src="/bower_components/tooltipster/js/jquery.tooltipster.js")
-  script(src="/js/home.js")
-  script(src='/js/layout.js')
