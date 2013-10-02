@@ -7,7 +7,6 @@ module.exports = (env, callback) ->
     blogPage: '/blog'
     articlesPerPage: 3
 
-  # TODO: use env.utils.extend
   options = env.config.home or {}
   for key, value of defaults
     if defaults.hasOwnProperty key
@@ -15,7 +14,6 @@ module.exports = (env, callback) ->
 
   options.socials ?= []
 
-  # TODO: move the article retrieval code somewhere else.
   getArticles = (contents) ->
     articles = contents[options.articles]._.directories.map((item) ->
       item.index
@@ -38,10 +36,6 @@ module.exports = (env, callback) ->
         env: env
         contents: contents
         articles: @articles.slice 0, options.articlesPerPage
-
-        # TODO: This should be reviewed.
-        articlesPerPage: options.articlesPerPage
-        totalArticles: @articles.length
 
         blogPage: options.blogPage
         socials: options.socials
