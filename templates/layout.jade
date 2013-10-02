@@ -20,6 +20,12 @@ html(lang='en')
       link(rel="stylesheet", href="/extra_dependencies/tooltipster/tooltipster.css")
       link(rel='stylesheet', href='/css/layout.css')
 
+    block scripts
+      //- TODO concatenate and minify.
+      script(src="/bower_components/jquery/jquery.js")
+      script(src="/extra_dependencies/tooltipster/jquery.tooltipster.js")
+      script(src="/js/layout.js")
+
     //- TODO: add analytics
 
   body
@@ -81,8 +87,3 @@ html(lang='en')
                 a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
                 //- please leave the "designed by" if you use the design, as well
                 //- as "powered by" if you use the site generator.
-    block scripts
-      //- TODO concatenate and minify.
-      script(src="/bower_components/jquery/jquery.js")
-      script(src="/extra_dependencies/tooltipster/jquery.tooltipster.js")
-      script(src="/js/layout.js")

@@ -10,8 +10,8 @@ block content
   - }).value()
   - var map = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-  section.blog-content
-    h2 Archive
+  section
+    h1 Archive
     div
       - var years = _.chain(archive).keys().reverse().value()
       table
