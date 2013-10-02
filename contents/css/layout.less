@@ -114,9 +114,6 @@ body > footer {
     & > div {
       .make-row();
 
-      // TODO: dump the use of psuedo-class, and stick to using plain old
-      // classes.
-
       @media (max-width: (@grid-float-breakpoint - 1px)) {
         section:not(:first-child) {
           margin-top: 50px;
@@ -127,7 +124,7 @@ body > footer {
         }
       }
 
-      section:first-child {
+      .recent-posts {
         .make-column(4);
 
         ul {
@@ -164,7 +161,7 @@ body > footer {
         }
       }
 
-      section:nth-child(2) {
+      .about-me {
         h3 {
           margin-bottom: -5px;
         }
@@ -174,7 +171,7 @@ body > footer {
         .make-column(4);
       }
 
-      section:last-child {
+      .social-links {
         .make-column(4);
         ul {
           list-style: none;
@@ -201,12 +198,17 @@ body > footer {
     }
   }
 
-  & > div {
+  & > .copyright {
     .container();
-    margin-top: 30px;
     p {
-      color: @black-40;
+      text-align: center;
+      color: @black-60;
+      line-height: 16px;
       font-size: 12px;
+      margin-top: 20px;
+      a {
+        color: @black-40;
+      }
     }
   }
 }

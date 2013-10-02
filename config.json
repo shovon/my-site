@@ -3,7 +3,9 @@
     "url": "http://localhost:8080",
     "name": "shovon.github.io",
     "owner": "Salehen Shovon Rahman",
-    "description": "Ramblings of an immor(t)al demigod"
+    "description": "Ramblings of an immor(t)al demigod",
+    "disqusShortname": "shovonrahman",
+    "googleAnalytics": "UA-44535411-1"
   },
   "home": {
     "socials": [

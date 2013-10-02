@@ -5,6 +5,9 @@ module.exports = (env, callback) ->
     articles: 'blog'
     filename: 'index.html'
     blogPage: '/blog'
+
+    # There's already a `paginator.perPage`. We don't need another
+    # `home.articlesPerPage`, since the former represents the latter exactly.
     articlesPerPage: 3
 
   options = env.config.home or {}

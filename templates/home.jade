@@ -11,7 +11,6 @@ block content
         ul
           for social in socials
             li(data-tooltip, title='#{social.text}', data-background='#{social.color}')
-              //- TODO: remove the class for this one.
               a.social(href='#{social.url}', style='background-color: #{social.color}', target='_blank')
                 span(class='symbol')
                   !=social.symbol

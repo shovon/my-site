@@ -12,4 +12,4 @@ grunt wintersmith
 
 ## TODO:
 
-- soft code the hostname onto the configs. This allows Disqus to properly link to specific articles in the blog. There's also potentially other benefits as well
+- have multiple settings file for multiple environments

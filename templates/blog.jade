@@ -18,8 +18,9 @@ block content
                 span= moment(article.date).format('MMMM DD, YYYY')
             section
               !{ typogr(article.intro).typogrify() }
+            footer
               if article.hasMore
-                p.text-align-right
+                p
                   a(href=article.url) Read more
 
     div
