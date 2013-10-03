@@ -1,12 +1,3 @@
-(function ($) {
-  'use strict';
-
-  $(function () {
-    var $siteHeader = $('.site-header li');
-    $siteHeader.tooltipster({
-      delay: 0,
-      theme: '.tooltip-simple-black-small'
-    });
-  });
-
-})(window.jQuery);
+//import "../bower_components/jquery/jquery.js"
+//import "../extra_dependencies/tooltipster/jquery.tooltipster.js"
+//import "layout-base.js"

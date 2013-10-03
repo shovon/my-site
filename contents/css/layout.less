@@ -1,3 +1,214 @@
 // This is the style applied to pages that extend the layout.jade file
 
-@import "base.less";
+@import '../extra_dependencies/preboot/preboot.less';
+
+@import "../extra_dependencies/tooltipster/tooltipster.less";
+
+@import 'base.less';
+@import 'mixins.less';
+
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.woff') format('woff'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.symbol, a.symbol:before {
+  font-family: 'Mono Social Icons Font';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+a.symbol:before {
+  content: attr(title);
+  margin-right: 0.3em;
+  font-size: 130%;
+}
+
+html {
+  min-height: 100%;
+}
+
+body > header {
+  border-bottom: 1px solid @black-10;
+  section {
+    .clearfix();
+    .container();
+    h2 {
+      float: left;
+      font-size: 18px;
+      a {
+        color: @black-60;
+        .transition(color 200ms);
+      }
+
+      a:visited{
+        color: @black-40;
+      }
+
+      a:hover {
+        color: @black-70;
+        text-decoration: none;
+      }
+    }
+    nav {
+      float: right;
+      ul {
+        list-style: none;
+        padding: 0;
+        li {
+          display: inline-block;
+          font-size: 14px;
+          &:not(:last-child) {
+            margin-right: 15px;
+          }
+
+          a {
+            color: @brand-primary;
+          }
+
+          a:visited {
+            color: @brand-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+body > footer {
+  background-color: @black-80;
+  padding: 15px 0;
+  
+  &.push-down {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &, h3, p {
+    .font-normal-dark();
+  }
+  h3 {
+    border-bottom: 3px solid @black-70;
+    padding-bottom: 10px;
+  }
+
+  & > section {
+    .container();
+
+    & > div {
+      .make-row();
+
+      @media (max-width: (@grid-float-breakpoint - 1px)) {
+        section:not(:first-child) {
+          margin-top: 50px;
+        }
+
+        section:first-child {
+          margin-top: 40px;
+        }
+      }
+
+      .recent-posts {
+        .make-column(4);
+
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            .clearfix();
+
+            &:not(:first-child) {
+              padding-top: 10px;
+            }
+
+            &:not(:last-child) {
+              padding-bottom: 10px;
+            }
+            
+            &:not(:last-child) {
+              border-bottom: 1px dotted @black-70;
+            }
+
+            span:first-child {
+              float: left;
+              a {
+                color: white;
+              }
+            }
+
+            span:last-child {
+              float: right;
+              font-size: 12px;
+              color: @black-60;
+            }
+          }
+        }
+      }
+
+      .about-me {
+        h3 {
+          margin-bottom: -5px;
+        }
+        p {
+          line-height: 25px;
+        }
+        .make-column(4);
+      }
+
+      .social-links {
+        .make-column(4);
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            display: inline-block;
+            font-size: 25px;
+            margin-bottom: 20px;
+            margin-right: 5px;
+            a {
+              opacity: 0.5;
+              text-decoration: none;
+              border-radius: 50px;
+              padding: 1px 5px;
+              color: white;
+              .transition(opacity 200ms);
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > .copyright {
+    .container();
+    p {
+      text-align: center;
+      color: @black-60;
+      line-height: 16px;
+      font-size: 12px;
+      margin-top: 20px;
+      a {
+        color: @black-40;
+      }
+    }
+  }
+}

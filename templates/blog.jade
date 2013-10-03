@@ -1,25 +1,34 @@
-extends blog-base
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/css/blog.css')
 
 block content
-  div.container.articles
-    each article in articles
-      article
-        header
-          p
-            span= moment(article.date).format('MMMM DD, YYYY')
-          h2
-            a(href=article.url)= article.title
-        section
-          !{ typogr(article.intro).typogrify() }
-          if article.hasMore
-            p.text-align-right
-              a(href=article.url) more
+  section
+    h1 The Blog
 
-block prepend footer
-  div.container.nav-footer
-    if prevPage
-      a(href=prevPage.url) « Newer
-    else
-      a(href='/archive.html') « Archives
-    if nextPage
-      a.prev(href=nextPage.url) Older »
+    div
+      each article in articles
+        section
+          article
+            header
+              h3
+                a(href=article.url)= article.title
+              p
+                span= moment(article.date).format('MMMM DD, YYYY')
+            section
+              !{ typogr(article.intro).typogrify() }
+            footer
+              if article.hasMore
+                p
+                  a(href=article.url) Read more
+
+    div
+      nav
+        if prevPage
+          a(href=prevPage.url) « Newer
+        else
+          a(href='/archive') « Archives
+
+        if nextPage
+          a.prev(href=nextPage.url) Older »

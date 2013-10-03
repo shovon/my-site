@@ -1,0 +1,25 @@
+@import 'layout.less';
+@import 'mixins.less';
+@import 'blog-common.less';
+
+.blog-content {
+  .container();
+  max-width: 700px;
+}
+
+article {
+  header {
+    margin: 50px 0;
+    h1, p {
+      text-align: center;
+    }
+    p {
+      text-transform: uppercase;
+    }
+  }
+
+  footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
