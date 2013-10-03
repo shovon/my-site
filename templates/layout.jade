@@ -1,7 +1,5 @@
 !!! 5
-html(lang='en')
-  //- TODO: minify the resulting HTML
-
+html(lang='en', class='no-js')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
@@ -16,11 +14,19 @@ html(lang='en')
       type='application/rss+xml',
       title=locals.description)
     block styles
-      //- TODO: Only one CSS file should be loaded.
-      link(rel="stylesheet", href="/extra_dependencies/tooltipster/tooltipster.css")
       link(rel='stylesheet', href='/css/layout.css')
 
-    //- TODO: add analytics
+    block scripts
+      script(src="/js/layout.js")
+
+      script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '#{googleAnalytics}', 'shovon.github.io');
+        ga('send', 'pageview');
 
   body
     block header
@@ -30,11 +36,10 @@ html(lang='en')
             a(href='/') #{ locals.name }
           nav
             ul
-              //- TODO: maybe soft code these?
               li
                 a(href='/') Home
               li
-                a(href='/blog/') Blog
+                a(href='/blog') Blog
 
     block content
 
@@ -42,7 +47,7 @@ html(lang='en')
       block footer
         section
           div
-            section
+            section.recent-posts
               h3 Recent Posts
               ul
                 for article in articles
@@ -51,13 +56,13 @@ html(lang='en')
                       a(href='#{article.url}')= article.title
                     span= moment(article.date).format('MMM DD, YYYY')
 
-            section
+            section.about-me
               h3 About Me
               p
                 | I'm Salehen Shovon Rahman, I write code, and I'm on the
                 | Internet a lot.
 
-            section
+            section.social-links
               h3 Connect With Me
               ul.social-footer
                 for social in env.config.home.socials
@@ -66,23 +71,21 @@ html(lang='en')
                       span(class='symbol')
                         !=social.symbol
 
-        div
-            p
-              | &copy; #{ new Date().getFullYear() } #{ locals.owner }
-
-          //-
-            section.container.copy.text-align-center
-              p
-                | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
-                | designed by 
-                a(href='https://twitter.com/shovon_rahman', target='_blank') 
-                  | @shovon_rahman
-                |  &mdash; powered by&nbsp;
-                a(href='https://github.com/jnordberg/wintersmith', target="_blank") Wintersmith
-                //- please leave the "designed by" if you use the design, as well
-                //- as "powered by" if you use the site generator.
-    block scripts
-      //- TODO concatenate and minify.
-      script(src="/bower_components/jquery/jquery.js")
-      script(src="/extra_dependencies/tooltipster/jquery.tooltipster.js")
-      script(src="/js/layout.js")
+        section.copyright
+          p
+            | &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; 
+            //- Please leave the "designed by" if you use the design.
+            | powered by 
+            a(
+              href='https://github.com/jnordberg/wintersmith',
+              target="_blank")
+              | Wintersmith
+            | . Hosted on 
+            a(href='https://github.com/', target='_blank') GitHub
+            | . (For the hackers among you, the site's source code is on a
+            | separate 
+            a(href='https://github.com/shovon/my-site', target='_blank')
+              | repository
+            | )
+            //- please leave the "powered by", if you use the site
+            //- generator.

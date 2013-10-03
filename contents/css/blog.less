@@ -2,37 +2,64 @@
 @import 'mixins.less';
 @import 'blog-common.less';
 
-.blog-content {
+body > section {
   margin-bottom: 40px;
 
   & > div {
     & > section {
       .make-row();
       border-bottom: 1px solid @black-10;
+
+      &:not(:first-child) {
+        padding-top: 20px;
+        padding-bottom: 15px;
+      }
+
+      article {
+        section {
+          p:last-child {
+            margin: 0;
+          }
+        }
+      }
     }
     & > section article, nav {
       .make-column(10);
       .make-column-offset(1);
     }
 
-    nav {
-      margin-top: 40px;
-    }
-
+    
     &:last-child {
       .clearfix();
+    }
+    
+    nav {
+      margin-top: 40px;
     }
   }
 
   article {
     .make-row();
 
+
     header {
       .make-column(4);
+      @media (max-width: (@grid-float-breakpoint - 1px)) {
+        text-align: center;
+      }
     }
 
     section {
       .make-column(8);
+    }
+
+    footer {
+      .make-column(8);
+      .make-column-offset(4);
+
+      p {
+        text-align: right;
+      }
     }
   }
 }

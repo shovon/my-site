@@ -54,7 +54,7 @@
     ]
   },
   "jsconcat": {
-    "minify": false
+    "minify": true
   },
   "shared": {
     "articles": "blog"
@@ -72,7 +72,7 @@
     "typogr": "typogr"
   },
   "jade": {
-    "pretty": true
+    "pretty": false
   },
   "markdown": {
     "smartLists": true,

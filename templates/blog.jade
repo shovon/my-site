@@ -4,8 +4,8 @@ block styles
   link(rel='stylesheet', href='/css/blog.css')
 
 block content
-  section.blog-content
-    h2 The Blog
+  section
+    h1 The Blog
 
     div
       each article in articles
@@ -18,8 +18,9 @@ block content
                 span= moment(article.date).format('MMMM DD, YYYY')
             section
               !{ typogr(article.intro).typogrify() }
+            footer
               if article.hasMore
-                p.text-align-right
+                p
                   a(href=article.url) Read more
 
     div
@@ -27,7 +28,7 @@ block content
         if prevPage
           a(href=prevPage.url) « Newer
         else
-          a(href='/archive.html') « Archives
+          a(href='/archive') « Archives
 
         if nextPage
           a.prev(href=nextPage.url) Older »

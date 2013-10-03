@@ -1,7 +1,43 @@
 // This is the style applied to pages that extend the layout.jade file
 
+@import '../extra_dependencies/preboot/preboot.less';
+
+@import "../extra_dependencies/tooltipster/tooltipster.less";
+
 @import 'base.less';
 @import 'mixins.less';
+
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.woff') format('woff'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+       url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../extra_dependencies/monosocialiconsfont/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.symbol, a.symbol:before {
+  font-family: 'Mono Social Icons Font';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+a.symbol:before {
+  content: attr(title);
+  margin-right: 0.3em;
+  font-size: 130%;
+}
 
 html {
   min-height: 100%;
@@ -17,6 +53,16 @@ body > header {
       font-size: 18px;
       a {
         color: @black-60;
+        .transition(color 200ms);
+      }
+
+      a:visited{
+        color: @black-40;
+      }
+
+      a:hover {
+        color: @black-70;
+        text-decoration: none;
       }
     }
     nav {
@@ -26,8 +72,17 @@ body > header {
         padding: 0;
         li {
           display: inline-block;
+          font-size: 14px;
           &:not(:last-child) {
             margin-right: 15px;
+          }
+
+          a {
+            color: @brand-primary;
+          }
+
+          a:visited {
+            color: @brand-primary;
           }
         }
       }
@@ -52,13 +107,24 @@ body > footer {
     border-bottom: 3px solid @black-70;
     padding-bottom: 10px;
   }
+
   & > section {
     .container();
 
     & > div {
       .make-row();
 
-      section:first-child {
+      @media (max-width: (@grid-float-breakpoint - 1px)) {
+        section:not(:first-child) {
+          margin-top: 50px;
+        }
+
+        section:first-child {
+          margin-top: 40px;
+        }
+      }
+
+      .recent-posts {
         .make-column(4);
 
         ul {
@@ -95,7 +161,7 @@ body > footer {
         }
       }
 
-      section:nth-child(2) {
+      .about-me {
         h3 {
           margin-bottom: -5px;
         }
@@ -105,7 +171,7 @@ body > footer {
         .make-column(4);
       }
 
-      section:last-child {
+      .social-links {
         .make-column(4);
         ul {
           list-style: none;
@@ -132,12 +198,17 @@ body > footer {
     }
   }
 
-  & > div {
+  & > .copyright {
     .container();
-    margin-top: 30px;
     p {
-      color: @black-40;
+      text-align: center;
+      color: @black-60;
+      line-height: 16px;
       font-size: 12px;
+      margin-top: 20px;
+      a {
+        color: @black-40;
+      }
     }
   }
 }

@@ -4,11 +4,12 @@ module.exports = (env, callback) ->
   defaults =
     articles: 'blog'
 
-  # TODO: find a better config to store the location of all blog posts.
-  options = env.config.home or {}
+  options = env.config.posts or {}
   for key, value of defaults
     if defaults.hasOwnProperty key
       options[key] ?= defaults[key]
+
+  options.articles = env.config.shared.articles or options.articles
 
   env.getContents (err, contents) ->
     articles = contents[options.articles]._.directories.map (item) ->

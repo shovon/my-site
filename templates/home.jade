@@ -3,16 +3,17 @@ extends layout
 block styles
   link(rel='stylesheet', href='/css/home.css')
 
+block scripts
+  script(src="/js/home.js")
+
 block content
-  section.hero-unit
-    //- TODO: having a container like that isn't very semantic
+  section
     hgroup
       h1 Salehen Shovon Rahman
       nav
         ul
           for social in socials
             li(data-tooltip, title='#{social.text}', data-background='#{social.color}')
-              //- TODO: remove the class for this one.
               a.social(href='#{social.url}', style='background-color: #{social.color}', target='_blank')
                 span(class='symbol')
                   !=social.symbol
@@ -28,9 +29,3 @@ block content
         | afraid to 
         strong say hi
         |. I'm a friendly guy.
-
-block scripts
-  script(src="/bower_components/jquery/jquery.js")
-  script(src="/bower_components/tooltipster/js/jquery.tooltipster.js")
-  script(src='/js/layout.js')
-  script(src="/js/home.js")
