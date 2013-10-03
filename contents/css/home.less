@@ -35,11 +35,7 @@ body > section {
 
     h1 {
       margin: 0;
-      -webkit-animation-delay: 250ms;
-      -moz-animation-delay: 250ms;
-      -ms-animation-delay: 250ms;
-      -o-animation-delay: 250ms;
-      animation-delay: 250ms;
+      .animation-delay(250ms);
     }
 
     ul {
@@ -47,12 +43,7 @@ body > section {
       padding: 0;
       list-style: none;
 
-      // TODO: move these animation options to its own mixin.
-      -webkit-animation-delay: 500ms;
-      -moz-animation-delay: 500ms;
-      -ms-animation-delay: 500ms;
-      -o-animation-delay: 500ms;
-      animation-delay: 500ms;
+      .animation-delay(500ms);
 
       &:hover {
         li {
@@ -92,12 +83,7 @@ body > section {
       line-height: 1.5em;
       margin-top: -10px;
 
-      // TODO: use a mixin instead.
-      -webkit-animation-delay: 750ms;
-      -moz-animation-delay: 750ms;
-      -ms-animation-delay: 750ms;
-      -o-animation-delay: 750ms;
-      animation-delay: 750ms;
+      .animation-delay(750ms);
     }
   }
 }
