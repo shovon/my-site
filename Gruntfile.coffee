@@ -19,64 +19,94 @@ module.exports = (grunt) ->
         options:
           action: 'preview'
 
+  grunt.registerTask 'clean', 'Delete the downloaded files, and the build site', ->
+    rimraf.sync 'build'
+    rimraf.sync path.join __dirname, 'contents', 'extra_dependencies'
+    rimraf.sync path.join __dirname, 'contents', 'bower_components' 
 
   grunt.registerTask 'get', 'Downlaod the dependencies', ->
-    bowerJson = JSON.parse fs.readFileSync 'bower.json', 'utf8'
+
     done = @async()
 
-    async.each(bowerJson.extraDependencies, ((dependency, callback) ->
-      destDir = path.join(
-        __dirname,
-        'contents',
-        'extra_dependencies',
-        dependency.name
-      )
+    async.parallel [
+      (callback) =>
+        bowerJson = JSON.parse fs.readFileSync 'bower.json', 'utf8'
 
-      if dependency.files?
-        return do ->
-          mkdirp.sync destDir
-          async.each(dependency.files, ((file, callback) ->
-            request file.remote, (err, res, body) ->
-              if res.statusCode >= 400
-                err = new Error 'Some error occured'
-
-              if err
-                return callback err if err
-
-              fs.writeFileSync (path.join destDir, file.filename), body, 'utf8'
-              callback null
-          ),
-          (err) ->
-            return callback err if err
-            callback null
+        async.each(bowerJson.extraDependencies, ((dependency, callback) ->
+          destDir = path.join(
+            __dirname,
+            'contents',
+            'extra_dependencies',
+            dependency.name
           )
-      else if dependency.repo?
-        return do ->
-          # TODO: delete old repo before cloning.
 
-          git = child_process.spawn 'git', [
-            'clone'
-            dependency.repo.url
-            destDir
-          ]
+          if dependency.files?
+            return do ->
+              mkdirp.sync destDir
+              async.each(dependency.files, ((file, callback) ->
+                message = "#{dependency.name}: #{file.filename}"
+                request file.remote, (err, res, body) ->
+                  if res.statusCode >= 400
+                    err = new Error "Failed to download #{file.filename}, with " +
+                      "#{response.statusCode}. URL: #{file.remote}"
 
-          onData = (data) ->
-            console.log data.toString('utf8').trim()
+                  if err
+                    return callback err if err
 
-          git.stdout.on 'data', onData
-          git.stderr.on 'data', onData
+                  grunt.log.writeln "#{message} ok"
 
-          git.on 'close', (code) ->
-            return callback new Error 'Weird error' if code
-            # TODO: delete the .git folder before returning.
-            callback null
+                  fs.writeFileSync (path.join destDir, file.filename), body, 'utf8'
+                  callback null
+              ),
+              (err) ->
+                return callback err if err
+                callback null
+              )
+          else if dependency.repo?
+            return do ->
 
-      callback null
-    ),
-    (err) ->
+              console.log "Deleting #{destDir}"
+              rimraf.sync destDir
+
+              git = child_process.spawn 'git', [
+                'clone'
+                dependency.repo.url
+                destDir
+              ]
+
+              onData = (data) ->
+                console.log data.toString('utf8').trim()
+
+              git.stdout.on 'data', onData
+              git.stderr.on 'data', onData
+
+              git.on 'close', (code) ->
+                return callback new Error 'Weird error' if code
+                rimraf.sync path.join destDir, '.git'
+                callback null
+
+          callback null
+        ),
+        (err) ->
+          callback err if err
+          callback null
+        )
+      
+      (callback) ->
+        bower = child_process.spawn 'bower', [ 'install' ]
+
+        onData = (data) -> console.log data.toString('utf8').trim()
+
+        bower.stdout.on 'data', onData
+        bower.stdout.on 'data', onData
+
+        bower.on 'close', (code) ->
+          return callback new Error 'Weird error' if code
+          callback null
+    ], (err) ->
       throw err if err
       done()
-    )
+
 
   # If your tempted to refactor this code to use Grunt Wintersmith, then be my
   # guest. However, at the time of trying the aforementioned plugin, it didn't
