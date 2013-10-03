@@ -51,12 +51,15 @@
       var windowHeight = $window.height();
       var introHeight = bodySection.hgroup.$el.height();
 
+      var minimumPadding = 100;
+
       var newHeroHeight = windowHeight - headerHeight;
-      if (newHeroHeight < introHeight + 50) {
-        newHeroHeight = introHeight + 50;
+      if (newHeroHeight < introHeight + minimumPadding) {
+        newHeroHeight = introHeight + minimumPadding;
       }
 
-      var newIntroPadding = (newHeroHeight / 2) - (introHeight / 2) - 25;
+      var newIntroPadding =
+        (newHeroHeight / 2) - (introHeight / 2) - (minimumPadding / 4);
 
       bodySection.$el.height(newHeroHeight);
       bodySection.hgroup.$el.css('padding-top', (newIntroPadding) + 'px');
