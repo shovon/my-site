@@ -41,29 +41,26 @@
 
     var $window = $(window);
     $window.resize(function () {
-        resizeHero();
-      });
-
       resizeHero();
+    });
 
-      function resizeHero() {
-        var headerHeight = bodyHeader.$el.height();
-        var windowHeight = $window.height();
+    resizeHero();
 
-        var introHeight = bodySection.hgroup.$el.height();
+    function resizeHero() {
+      var headerHeight = bodyHeader.$el.height();
+      var windowHeight = $window.height();
+      var introHeight = bodySection.hgroup.$el.height();
 
-        var newHeroHeight = windowHeight - headerHeight;
-
-        if (newHeroHeight < introHeight + 50) {
-          newHeroHeight = introHeight + 50;
-        }
-
-        var newIntroPadding = (newHeroHeight / 2) - (introHeight / 2);
-
-        bodySection.$el.height(newHeroHeight);
-
-        bodySection.hgroup.$el.css('padding-top', (newIntroPadding) + 'px');
+      var newHeroHeight = windowHeight - headerHeight;
+      if (newHeroHeight < introHeight + 50) {
+        newHeroHeight = introHeight + 50;
       }
+
+      var newIntroPadding = (newHeroHeight / 2) - (introHeight / 2) - 25;
+
+      bodySection.$el.height(newHeroHeight);
+      bodySection.hgroup.$el.css('padding-top', (newIntroPadding) + 'px');
+    }
   });
 
 }(window.jQuery));
