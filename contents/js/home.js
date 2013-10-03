@@ -4,7 +4,24 @@
 (function ($) {
   'use strict';
 
+  // TODO: make these DRY.
+  var $bodySection = $('body > section')
+
+  $bodySection.addClass('wait');
+
   $(function () {
+
+    $('body > section hgroup h1').addClass('animated fadeInUp');
+    $('body > section hgroup ul').addClass('animated fadeInUp04');
+    $('body > section hgroup p').addClass('animated fadeInUp');
+
+    setTimeout(function () {
+      $('body > section').removeClass('wait');
+      $('body > section hgroup h1').removeClass('animated fadeInUp');
+      $('body > section hgroup ul').removeClass('animated fadeInUp04');
+      $('body > section hgroup p').removeClass('animated fadeInUp');
+    }, 2000);
+
     var $hero = $('body > section');
     var $headerNav = $('body > header');
     var $intro = $hero.find('hgroup');

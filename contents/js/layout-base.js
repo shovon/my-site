@@ -1,7 +1,9 @@
 (function ($) {
   'use strict';
 
+
   $(function () {
+    $('html').removeClass('no-js');
     var $footer = $('body > footer');
     var $footerSocial = $footer.find('.social-footer li');
     $footerSocial.tooltipster({

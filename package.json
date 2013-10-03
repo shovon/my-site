@@ -8,10 +8,11 @@
     "grunt": "~0.4.1",
     "importer": "~0.7.0",
     "async": "~0.2.9",
-    "wintersmith": "~2.0.7",
+    "wintersmith": "*",
     "mkdirp": "~0.3.5",
     "request": "~2.27.0",
-    "rimraf": "~2.2.2"
+    "rimraf": "~2.2.2",
+    "bower": "*"
   },
   "repository": "none"
 }

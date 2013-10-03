@@ -93,7 +93,9 @@ module.exports = (grunt) ->
         )
       
       (callback) ->
-        bower = child_process.spawn 'bower', [ 'install' ]
+        bower = child_process.spawn(
+          './node_modules/bower/bin/bower', [ 'install' ]
+        )
 
         onData = (data) -> console.log data.toString('utf8').trim()
 
