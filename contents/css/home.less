@@ -2,7 +2,6 @@
 @import 'mixins.less';
 
 @import 'animations/fadeInUp.less';
-@import 'animations/fadeInUp04.less';
 
 @transition-time: 200ms;
 
@@ -26,6 +25,12 @@ body > section {
   }
 
   hgroup {
+    h1, ul, p {
+      opacity: 0;
+    }
+  }
+
+  hgroup {
     .container();
 
     h1 {
@@ -39,7 +44,6 @@ body > section {
 
     ul {
       .transition(opacity @transition-time);
-      opacity: 0.4;
       padding: 0;
       list-style: none;
 
@@ -51,7 +55,9 @@ body > section {
       animation-delay: 500ms;
 
       &:hover {
-        opacity: 1;
+        li {
+          opacity: 1;
+        }
       }
 
       li {
@@ -59,6 +65,7 @@ body > section {
         margin-right: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
+        .transition(opacity @transition-time);
 
         .social {
           .box-sizing(border-box);
@@ -75,6 +82,8 @@ body > section {
         .symbol {
           font-size: 50px;
         }
+
+        opacity: 0.4;
       }
     }
 
@@ -84,19 +93,19 @@ body > section {
       margin-top: -10px;
 
       // TODO: use a mixin instead.
-      -webkit-animation-delay: 1000ms;
-      -moz-animation-delay: 1000ms;
-      -ms-animation-delay: 1000ms;
-      -o-animation-delay: 1000ms;
-      animation-delay: 1000ms;
+      -webkit-animation-delay: 750ms;
+      -moz-animation-delay: 750ms;
+      -ms-animation-delay: 750ms;
+      -o-animation-delay: 750ms;
+      animation-delay: 750ms;
     }
   }
 }
 
-body > section.wait {
+.no-js body > section {
   hgroup {
     h1, ul, p {
-      opacity: 0;
+      opacity: 1;
     }
   }
 }
