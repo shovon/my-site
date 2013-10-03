@@ -1,5 +1,5 @@
 //import "../bower_components/jquery/jquery.js"
-//import "../bower_components/tooltipster/js/jquery.tooltipster.js"
+//import "../extra_dependencies/tooltipster/jquery.tooltipster.js"
 
 (function ($) {
   'use strict';

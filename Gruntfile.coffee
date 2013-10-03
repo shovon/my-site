@@ -107,7 +107,6 @@ module.exports = (grunt) ->
       throw err if err
       done()
 
-
   # If your tempted to refactor this code to use Grunt Wintersmith, then be my
   # guest. However, at the time of trying the aforementioned plugin, it didn't
   # work that well.
