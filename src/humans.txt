@@ -1,8 +1,0 @@
-# Me
-
-    Salehen Shovon Rahman -- Programmer -- @shovon_rahman
-
-# TECHNOLOGY COLOPHON
-
-    HTML, CSS3
-    Normalize.css, jQuery

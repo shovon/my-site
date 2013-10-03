@@ -1,0 +1,35 @@
+extends blog
+
+block styles
+  link(rel='stylesheet', href='/css/archive.css')
+
+block content
+  - var lineHeight = 2.2;
+  - var archive = _.chain(env.helpers.getArticles(contents)).groupBy(function(item) {
+  -   return item.date.getFullYear()
+  - }).value()
+  - var map = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  section
+    h1 Archive
+    div
+      - var years = _.chain(archive).keys().reverse().value()
+      table
+        each year, i in years
+          tr
+            td
+              h3.year-label= year
+              - var yearArticles = _.groupBy(archive[year], function(item) { return map[item.date.getMonth()] })
+              - var months = Object.keys(yearArticles);
+            td
+              table
+                each month, i in months
+                  - var articles = yearArticles[month]
+                  tr
+                    td
+                      = month
+                    td
+                      ul
+                        each article, i in articles
+                          li
+                            a(href=article.url)= article.title

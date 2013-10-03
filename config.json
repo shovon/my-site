@@ -1,0 +1,84 @@
+{
+  "locals": {
+    "url": "http://localhost:8080",
+    "name": "shovon.github.io",
+    "owner": "Salehen Shovon Rahman",
+    "description": "Ramblings of an immor(t)al demigod",
+    "disqusShortname": "shovonrahman",
+    "googleAnalytics": "UA-44535411-1"
+  },
+  "home": {
+    "socials": [
+      {
+        "symbol": "&#xe086;",
+        "url": "https://twitter.com/shovon_rahman",
+        "color": "#0096ff",
+        "text": "I tweet"
+      },
+      {
+        "symbol": "&#xe037;",
+        "url": "https://github.com/shovon",
+        "color": "#242424",
+        "text": "I code"
+      },
+      {
+        "symbol": "&#xe052;",
+        "url": "http://ca.linkedin.com/in/salehenrahman/",
+        "color": "#367da6",
+        "text": "Connect with me"
+      },
+      {
+        "symbol": "&#xe039",
+        "url": "https://plus.google.com/105481576429214918750",
+        "color": "#00bc66",
+        "text": "Add me to your circle"
+      },
+      {
+        "symbol": "&#xe078;",
+        "url": "https://soundcloud.com/shovonrahman",
+        "color": "#ff6600",
+        "text": "My music"
+      },
+      {
+        "symbol": "&#xe099;",
+        "url": "https://youtube.com/user/shovonRahman",
+        "color": "#942424",
+        "text": "My music as videos"
+      },
+      {
+        "symbol": "&#xe024;",
+        "url": "mailto:salehen.rahman@gmail.com",
+        "color": "#778b93",
+        "text": "Email me"
+      }
+    ]
+  },
+  "jsconcat": {
+    "minify": false
+  },
+  "shared": {
+    "articles": "blog"
+  },
+  "plugins": [
+    "./plugins/paginator.coffee",
+    "./plugins/home.coffee",
+    "./plugins/posts.coffee",
+    "./plugins/jsconcat.coffee",
+    "wintersmith-less"
+  ],
+  "require": {
+    "moment": "moment",
+    "_": "underscore",
+    "typogr": "typogr"
+  },
+  "jade": {
+    "pretty": true
+  },
+  "markdown": {
+    "smartLists": true,
+    "smartypants": true
+  },
+  "paginator": {
+    "perPage": 3
+  }
+}
