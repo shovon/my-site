@@ -1,14 +1,23 @@
 html {
-  -webkit-transition: background-color 300ms, color 300ms;
-  -moz-transition: background-color 300ms, color 300ms;
-  -o-transition: background-color 300ms, color 300ms;
-  -ms-transition: background-color 300ms, color 300ms;
-  transition: background-color 300ms, color 300ms;
+  -webkit-transition: background-color 300ms, color 300ms, opacity 300ms;
+  -moz-transition: background-color 300ms, color 300ms, opacity 300ms;
+  -o-transition: background-color 300ms, color 300ms, opacity 300ms;
+  -ms-transition: background-color 300ms, color 300ms, opacity 300ms;
+  transition: background-color 300ms, color 300ms, opacity 300ms;
   color: #393939;
+}
+
+html.hide {
+  opacity: 0;
 }
 
 html.hovering {
   color: white;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
 }
 
 body {
@@ -55,6 +64,8 @@ body {
 
 
 h1 {
+  margin: 0;
+  margin-bottom: 25px;
   font-size: 3.5em;
 }
 
