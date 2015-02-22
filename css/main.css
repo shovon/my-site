@@ -1,3 +1,16 @@
+html {
+  -webkit-transition: background-color 300ms, color 300ms;
+  -moz-transition: background-color 300ms, color 300ms;
+  -o-transition: background-color 300ms, color 300ms;
+  -ms-transition: background-color 300ms, color 300ms;
+  transition: background-color 300ms, color 300ms;
+  color: #393939;
+}
+
+html.hovering {
+  color: white;
+}
+
 body {
   padding-top: 100px;
   font-family: "Helvetica Neue", Arial, sans;
@@ -17,27 +30,29 @@ body {
 
 .social li a {
   color: white;
+  display: inline-block;
 }
 
 .social li a span {
-  /*background-color: white;*/
   opacity: 0.5;
   display: block;
   padding: 10px 5px;
   border-radius: 100px;
+  -webkit-transition: opacity 300ms;
+  -moz-transition: opacity 300ms;
+  -o-transition: opacity 300ms;
+  -ms-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
 
-.social li a span:hover {
+/*.social li a span:hover {
+  opacity: 1;
+}*/
+
+.social:hover li a span {
   opacity: 1;
 }
 
-.icon-github { background-color: #242424; }
-.icon-twitter { background-color: #0096ff; }
-.icon-linkedin { background-color: #367da6; }
-
-.icon-twitter {
-  background-color
-}
 
 h1 {
   font-size: 3.5em;
