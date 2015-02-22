@@ -21,13 +21,25 @@ html.hovering {
 }
 
 .content h1 {
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 @media (max-width: 600px) {
+  .content h1 {
+    margin-top: 50px;
+    font-size: 1.75em;
+    margin-bottom: 50px;
+  }
   .content .social li {
     display: block;
     margin-bottom: 20px;
+    font-size: 2.5em;
+  }
+
+  .content .social li a span {
+    opacity: 1;
+    padding: 13px 10px;
+    border-radius: 100px;
   }
 }
 
