@@ -2,7 +2,7 @@
   $(function () {
     var $html = $('html');
 
-    var MINIMUM_POSITION = 0;
+    var MINIMUM_POSITION = 50;
 
     var $content = $('.content');
     reposition();

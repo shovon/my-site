@@ -20,6 +20,17 @@ html.hovering {
   position: absolute;
 }
 
+.content h1 {
+  padding: 0 20px;
+}
+
+@media (max-width: 600px) {
+  .content .social li {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
 body {
   padding-top: 100px;
   font-family: "Helvetica Neue", Arial, sans;
@@ -33,7 +44,7 @@ body {
 
 .social li {
   display: inline-block;
-  margin: 0 20px;
+  margin: 0 15px;
   font-size: 3em;
 }
 
