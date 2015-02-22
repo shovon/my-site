@@ -1,0 +1,49 @@
+body {
+  padding-top: 100px;
+  font-family: "Helvetica Neue", Arial, sans;
+}
+
+.social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social li {
+  display: inline-block;
+  margin: 0 20px;
+  font-size: 3em;
+}
+
+.social li a {
+  color: white;
+}
+
+.social li a span {
+  /*background-color: white;*/
+  opacity: 0.5;
+  display: block;
+  padding: 10px 5px;
+  border-radius: 100px;
+}
+
+.social li a span:hover {
+  opacity: 1;
+}
+
+.icon-github { background-color: #242424; }
+.icon-twitter { background-color: #0096ff; }
+.icon-linkedin { background-color: #367da6; }
+
+.icon-twitter {
+  background-color
+}
+
+h1 {
+  font-size: 3.5em;
+}
+
+h1, .social {
+  font-weight: 300;
+  text-align: center;
+}
